@@ -7,6 +7,8 @@ sys.setrecursionlimit(10000)
 class Cell:
     EMPTY = '█'
     OBSTACLE = '*'
+    PLAYER = 'P'
+    TARGET = '$'
 
     def __init__(self, row, col):
         self.type = Cell.EMPTY
@@ -20,6 +22,13 @@ class Cell:
 class World:
     def __init__(self, size):
         self.grid = np.array([[Cell(j, i) for i in range(size)] for j in range(size)])
+        self.target_row = 0
+        self.target_col = 0
+
+    def set_target_cell(self, cell: Cell):
+        self.target_row = cell.row
+        self.target_col = cell.col
+        self.grid[cell.row][cell.col].type = Cell.TARGET
 
 
 class Agent:
@@ -34,8 +43,14 @@ class Agent:
         self.world = world
         self.row = row
         self.col = col
+        self.target_row = 0
+        self.target_col = 0
 
-    def set_spot(self, cell: Cell):
+    def full_setup(self):
+        self.draw_obstacles()
+        self.set_agent_and_target_cells()
+
+    def set_agent_cell(self, cell: Cell):
         self.row = cell.row
         self.col = cell.col
 
@@ -89,40 +104,39 @@ class Agent:
             if cell not in visited:
                 self.dfs(cell, visited)
 
-    def dfs(self, cell, visited: set):
-        self.set_spot(cell)
+    def dfs(self, cell: Cell, visited: set):
+        self.set_agent_cell(cell)
         visited.add(cell)
         unvisited_neighbors = self.get_unvisited_neighbors(visited)
         while len(unvisited_neighbors) > 0:
             neighbor = np.random.choice(unvisited_neighbors)
-            if np.random.randint(1, 10000) <= 2800:
+            if np.random.randint(0, 10000) <= 2200:
                 neighbor.type = Cell.OBSTACLE
                 visited.add(neighbor)
             else:
                 self.dfs(neighbor, visited)
             unvisited_neighbors.remove(neighbor)
 
+    def set_agent_and_target_cells(self):
+        emptys = [cell for cell in self.world.grid.flatten() if cell.type == Cell.EMPTY]
+        self.set_agent_cell(np.random.choice(emptys))
+        self.world.set_target_cell(np.random.choice(emptys))
+
     def __str__(self):
         res = str()
         for row in range(len(self.world.grid)):
             for col in range(len(self.world.grid)):
                 if row == self.row and col == self.col:
-                    res += '¶ '
+                    res += Cell.PLAYER + ' '
                 else:
                     res += str(self.world.grid[row][col]) + ' '
             res += '\n'
         return res
 
 
-myWorld = World(101)
+myWorld = World(50)
 myAgent = Agent(myWorld, 0, 0)
-# myVisited = set()
-# myVisited.add(myAgent.move(Agent.MOVE_NORTH, False))
-# my_unvisited_neighbors = myAgent.get_unvisited_neighbors(myVisited)
-# for item in my_unvisited_neighbors:
-#     print(item.row, item.col)
-myAgent.draw_obstacles()
-
+myAgent.full_setup()
 obstacles = 0
 emptys = 0
 for cell in myWorld.grid.flatten():
