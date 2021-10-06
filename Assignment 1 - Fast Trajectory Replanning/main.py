@@ -1,3 +1,5 @@
+# Authors: Robert Kulesa, Daniel Liu, Michael Li
+
 import numpy as np
 import sys
 
