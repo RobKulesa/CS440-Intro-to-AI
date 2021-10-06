@@ -9,7 +9,45 @@
 
 % Document
 \begin{document}
+    \begin{titlepage}
+        \begin{center}
+            \vspace*{1cm}
 
-hello
+            \Huge
+            \textbf{Fast Trajectory Replanning}
 
+            \vspace{0.5cm}
+            \LARGE
+            Assignment 1
+
+            \vspace{1cm}
+
+            \textbf{Robert Kulesa, Michael Li, Daniel Liu}
+
+            \vfill
+
+
+            \vspace{0.8cm}
+
+            \Large
+            CS440 Fall 2021\\
+            Professor Boularias\\
+            Rutgers University - New Brunswick\\
+            October 15, 2021
+
+        \end{center}
+    \end{titlepage}
+    \begin{center}
+        \Large
+        \textbf{Part 1 - Understanding the methods}
+    \end{center}
+    \normalsize
+    \begin{enumerate}
+        \item[a)] The agent moves east, because the unblocked,
+        unvisited neighbor with the lowest cost $f(x) = g(x) + h(x)$ is the eastern neighbor.
+        Using manhattan distance as $h(x)$, the eastern neighbor has $f(x) = 1 + 2 = 3$,
+        whereas the northern neighbor has $f(x) = 1 + 4 = 5$.
+        Therefore, the eastern neighbor is selected, and the agent explores the eastern cell.
+        \item[b)] second item
+    \end{enumerate}
 \end{document}
