@@ -45,8 +45,6 @@ class Agent:
         self.world = world
         self.row = row
         self.col = col
-        self.target_row = 0
-        self.target_col = 0
 
     def full_setup(self):
         self.draw_obstacles()
@@ -56,44 +54,48 @@ class Agent:
         self.row = cell.row
         self.col = cell.col
 
+    # return the manhattan distance of a cell to the target cell
+    def mhd_to_target(self, row, col) -> int:
+        return np.abs(self.world.target_row - row) + np.abs(self.world.target_col - col)
+
     # check if move is valid, returning current spot if invalid or new spot if valid. set perform = true to move agent to cell.
-    def move(self, direction, perform: bool = True) -> Cell:
+    def move(self, direction, perform: bool = True):
         if direction == Agent.MOVE_NORTH:
             if self.row >= 1 and self.world.grid[self.row - 1][self.col].type == Cell.EMPTY:
                 if perform:
                     self.row -= 1
                 return self.world.grid[self.row - 1][self.col]
             else:
-                return self.world.grid[self.row][self.col]
+                return None
         if direction == Agent.MOVE_WEST:
             if self.col >= 1 and self.world.grid[self.row][self.col - 1].type == Cell.EMPTY:
                 if perform:
                     self.col -= 1
                 return self.world.grid[self.row][self.col - 1]
             else:
-                return self.world.grid[self.row][self.col]
+                return None
         if direction == Agent.MOVE_SOUTH:
             if self.row + 1 < len(self.world.grid) and self.world.grid[self.row + 1][self.col].type == Cell.EMPTY:
                 if perform:
                     self.row += 1
                 return self.world.grid[self.row + 1][self.col]
             else:
-                return self.world.grid[self.row][self.col]
+                return None
         if direction == Agent.MOVE_EAST:
             if self.col + 1 < len(self.world.grid) and self.world.grid[self.row][self.col + 1].type == Cell.EMPTY:
                 if perform:
                     self.col += 1
                 return self.world.grid[self.row][self.col + 1]
             else:
-                return self.world.grid[self.row][self.col]
-        return self.world.grid[self.row][self.col]
+                return None
+        return None
 
     # get unvisited neighbors of the agent's current cell
-    def get_unvisited_neighbors(self, visited):
+    def get_unvisited_neighbors(self, visited: set):
         res = list()
         for direction in Agent.DIRECTIONS:
             neighbor = self.move(direction, False)
-            if neighbor not in visited:
+            if neighbor is not None and neighbor not in visited:
                 res.append(neighbor)
         return res
 
@@ -124,6 +126,20 @@ class Agent:
         self.set_agent_cell(np.random.choice(emptys))
         self.world.set_target_cell(np.random.choice(emptys))
 
+    # return unvisited neighbor with lowest manhattan distance to target cell, with random tie-breaking
+    def get_neighbor_lowest_mhd(self, visited: set):
+        neighbors = self.get_unvisited_neighbors(visited)
+        if len(neighbors) < 1:
+            return None
+        res = neighbors[0]
+        if len(neighbors) > 1:
+            for neighbor in neighbors[1:]:
+                if self.mhd_to_target(neighbor.row, neighbor.col) < self.mhd_to_target(res.row, res.col):
+                    res = neighbor
+                elif self.mhd_to_target(res.row, res.col) == self.mhd_to_target(neighbor.row, neighbor.col):
+                    res = np.random.choice([res, neighbor])
+        return res
+
     def __str__(self):
         res = str()
         for row in range(len(self.world.grid)):
@@ -136,15 +152,22 @@ class Agent:
         return res
 
 
-myWorld = World(50)
+myWorld = World(10)
 myAgent = Agent(myWorld, 0, 0)
 myAgent.full_setup()
-obstacles = 0
-emptys = 0
-for cell in myWorld.grid.flatten():
-    if cell.type == Cell.EMPTY:
-        emptys += 1
-    if cell.type == Cell.OBSTACLE:
-        obstacles += 1
+# obstacles = 0
+# emptys = 0
+# for cell in myWorld.grid.flatten():
+#     if cell.type == Cell.EMPTY:
+#         emptys += 1
+#     if cell.type == Cell.OBSTACLE:
+#         obstacles += 1
+# print('emptys: ', emptys / (emptys + obstacles), ' obstacles: ', obstacles / (emptys + obstacles))
+
+neighbor = myAgent.get_neighbor_lowest_mhd(set())
+if neighbor is not None:
+    # neighbor.type = '-'
+    print(neighbor.row, neighbor.col)
+else:
+    print("invalid neighbor")
 print(myAgent)
-print('emptys: ', emptys / (emptys + obstacles), ' obstacles: ', obstacles / (emptys + obstacles))
