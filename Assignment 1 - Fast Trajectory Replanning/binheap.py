@@ -96,6 +96,8 @@ class BinHeap:
         self.heapify_down(0)
         return state
 
+    def peek(self):
+        return self.arr[0]
 
 def main():
     openlist = BinHeap(1)
