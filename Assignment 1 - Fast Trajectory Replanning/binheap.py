@@ -1,4 +1,4 @@
-from typing import Union
+from typing import Union, List
 
 import numpy as np
 
@@ -12,6 +12,9 @@ class State:
 
     def __str__(self):
         return '(' + str(self.cell.row) + ', ' + str(self.cell.col) + '): ' + str(self.f_value)
+
+    def __cmp__(self, other):
+        return self.f_value - other.f_value
 
 
 class BinHeap:
@@ -98,6 +101,16 @@ class BinHeap:
 
     def peek(self):
         return self.arr[0]
+
+    def get_cells(self) -> List[Cell]:
+        return [i.cell for i in self.arr]
+
+    def index_of(self, cell: Cell) -> int:
+        for i, e in enumerate(self.arr):
+            if e is State and e.cell.row == cell.row and e.cell.col == cell.col:
+                return i
+        return -1
+
 
 def main():
     openlist = BinHeap(1)

@@ -1,4 +1,5 @@
 # Authors: Robert Kulesa, Daniel Liu, Michael Li
+import array
 from typing import Optional, List
 
 import numpy as np
@@ -162,29 +163,47 @@ class Agent:
             res += '\n'
         return res
 
-    def repeated_forward_start_helper(self, g_goal, open_list: BinHeap, visited: set):
-        while g_goal > open_list.peek().f_value:
+    def repeated_forward_helper(self, g: list, open_list: BinHeap, visited: set, search: list, counter: int) -> List[Cell]:
+        tree = list()
+        while g[self.world.target_row][self.world.target_col] > open_list.peek().f_value:
             s = open_list.pop_root()
             visited.add(s.cell)
+            neighbors = self.get_unvisited_neighbors(visited)
+            for neighbor in neighbors:
+                if search[neighbor.row][neighbor.col] < counter:
+                    g[neighbor.row][neighbor.col] = np.Infinity
+                    search[neighbor.row][neighbor.col] = counter
+                if g[neighbor.row][neighbor.col] > g[self.row][self.col] + 1:
+                    g[neighbor.row][neighbor.col] = g[self.row][self.col] + 1
+                    tree.append(s.cell)
+                    idx = open_list.index_of(neighbor)
+                    if idx > 0:
+                        open_list.arr[idx].f_value = g[neighbor.row][neighbor.col] + self.world.mhd_to_target(neighbor.row, neighbor.col)
+                        open_list.heapify_up(idx)
+        return tree
 
     def repeated_forward_astar(self):
         counter = 0
         search = [[0 for i in range(len(self.world))] for j in range(len(self.world))]
+        g = [[None for i in range(len(self.world))] for j in range(len(self.world))]
+        trees = list()
         while self.row != self.world.target_row and self.col != self.world.target_col:
             counter += 1
-            g_start = 0
+            g[self.row][self.col] = 0
             search[self.row][self.col] = counter
-            g_goal = np.Infinity
+            g[self.world.target_row][self.world.target_col] = np.Infinity
             search[self.world.target_row][self.world.target_col] = counter
             open_list = BinHeap(10)
-            open_list.insert(State(self.get_agent_cell(), g_start + self.get_agent_mhd()))
+            open_list.insert(State(self.get_agent_cell(), g[self.row][self.col] + self.get_agent_mhd()))
             visited = set()
-            # repeated_forward_start_helper(g_goal, open_list, visited)
+            tree = self.repeated_forward_helper(g, open_list, visited, search, counter)
             if open_list.size == 0:
                 print('I cannot reach the target ;-;')
                 break
             # follow tree pointers from goal state to start state, then move agent along resulting path from start state to goal state until it reaches goal state
             #       or one or more action costs on the path increase;
+            self.row = tree[len(tree) - 1].row
+            self.col = tree[len(tree) - 1].col
             # update the increased action costs (if any);
 
         print('I reached the target! :D')
