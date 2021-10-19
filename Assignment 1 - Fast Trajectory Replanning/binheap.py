@@ -2,41 +2,60 @@ from typing import List, Optional
 
 
 class Cell:
+    NULL = '-'
     EMPTY = '█'
     OBSTACLE = '*'
     PLAYER = 'P'
     TARGET = '$'
 
-    def can_move_to(self):
-        return self.type == Cell.EMPTY or self.type == Cell.TARGET
+    # def can_move_to(self):
+    #     return self.type == Cell.EMPTY # or self.type == Cell.TARGET
 
-    def __init__(self, row, col):
-        self.type = Cell.EMPTY
+    def __init__(self, row, col, cell_type=NULL):
+        self.type = cell_type
         self.row = row
         self.col = col
 
     def __str__(self):
         return self.type
 
+    def __eq__(self, other):
+        return self.row == other.row and self.col == other.col
+
+    def __hash__(self):
+        return id(self)
+
 
 class State:
-    def __init__(self, cell: Cell, f_value: int):
+
+    def __init__(self, cell: Cell, g_value: int, h_value: int):
         self.cell = cell
-        self.f_value = f_value
+        self.g_value = g_value
+        self.h_value = h_value
+
+    def get_f_value(self):
+        return self.g_value + self.h_value
 
     def __str__(self):
-        return '(' + str(self.cell.row) + ', ' + str(self.cell.col) + '): ' + str(self.f_value)
+        return '(' + str(self.cell.row) + ', ' + str(self.cell.col) + '): ' + str(self.get_f_value())
         # return str(self.f_value)
 
-    def __cmp__(self, other):
-        return self.f_value - other.f_value
+    def cmp(self, other, tie_break_smaller_g: bool):
+        f = self.get_f_value() - other.get_f_value()
+        if f == 0:
+            if tie_break_smaller_g:
+                return other.g_value - self.g_value
+            else:
+                return self.g_value - other.g_value
+        return f
 
 
 class BinHeap:
 
     # Basic helper methods
-    def __init__(self):
+    def __init__(self, tie_break_smaller_g: bool = True):
         self.arr: List[State] = list()
+        self.tie_break_smaller_g = tie_break_smaller_g
 
     @staticmethod
     def get_parent_index(index: int) -> int:
@@ -78,7 +97,7 @@ class BinHeap:
 
     # functional methods
     def heapify_up(self, index: int) -> None:
-        if self.has_parent(index) and (self.parent(index).__cmp__(self.arr[index]) > 0):
+        if self.has_parent(index) and (self.parent(index).cmp(self.arr[index], self.tie_break_smaller_g) > 0):
             parent = self.get_parent_index(index)
             self.swap(parent, index)
             self.heapify_up(parent)
@@ -86,10 +105,10 @@ class BinHeap:
     def heapify_down(self, index) -> None:
         smol_child_index = index
 
-        if self.has_left_child(index) and self.arr[smol_child_index].__cmp__(self.left_child(index)) > 0:
+        if self.has_left_child(index) and self.arr[smol_child_index].cmp(self.left_child(index), self.tie_break_smaller_g) > 0:
             smol_child_index = self.get_left_child_index(index)
 
-        if self.has_right_child(index) and self.arr[smol_child_index].__cmp__(self.right_child(index)) > 0:
+        if self.has_right_child(index) and self.arr[smol_child_index].cmp(self.right_child(index), self.tie_break_smaller_g) > 0:
             smol_child_index = self.get_right_child_index(index)
 
         if smol_child_index != index:
@@ -120,21 +139,24 @@ class BinHeap:
                 return i
         return -1
 
+    def remove(self, idx: int) -> None:
+        self.arr.pop(idx)
+
     def __len__(self):
         return len(self.arr)
 
 
 def main():
     openlist = BinHeap()
-    openlist.insert(State(Cell(0, 0), 1))
+    openlist.insert(State(Cell(0, 0), 1, 0))
     # openlist.print_heap()
-    openlist.insert(State(Cell(1, 1), 5))
+    openlist.insert(State(Cell(1, 1), 5, 0))
     # openlist.print_heap()
-    openlist.insert(State(Cell(2, 2), 12))
+    openlist.insert(State(Cell(2, 2), 12, 0))
     # openlist.print_heap()
-    openlist.insert(State(Cell(3, 3), -5))
+    openlist.insert(State(Cell(3, 3), -5, 0))
     # openlist.print_heap()
-    openlist.insert(State(Cell(4, 4), 3))
+    openlist.insert(State(Cell(4, 4), 3, 0))
     openlist.print_heap()
 
     print('popping heap')
