@@ -1,8 +1,22 @@
-from typing import Union, List
+from typing import List, Optional
 
-import numpy as np
 
-from main import Cell
+class Cell:
+    EMPTY = '█'
+    OBSTACLE = '*'
+    PLAYER = 'P'
+    TARGET = '$'
+
+    def can_move_to(self):
+        return self.type == Cell.EMPTY or self.type == Cell.TARGET
+
+    def __init__(self, row, col):
+        self.type = Cell.EMPTY
+        self.row = row
+        self.col = col
+
+    def __str__(self):
+        return self.type
 
 
 class State:
@@ -11,8 +25,8 @@ class State:
         self.f_value = f_value
 
     def __str__(self):
-        # return '(' + str(self.cell.row) + ', ' + str(self.cell.col) + '): ' + str(self.f_value)
-        return str(self.f_value)
+        return '(' + str(self.cell.row) + ', ' + str(self.cell.col) + '): ' + str(self.f_value)
+        # return str(self.f_value)
 
     def __cmp__(self, other):
         return self.f_value - other.f_value
@@ -24,13 +38,16 @@ class BinHeap:
     def __init__(self):
         self.arr: List[State] = list()
 
-    def get_parent_index(self, index: int) -> int:
+    @staticmethod
+    def get_parent_index(index: int) -> int:
         return (index - 1) // 2
 
-    def get_left_child_index(self, index: int) -> int:
+    @staticmethod
+    def get_left_child_index(index: int) -> int:
         return (index * 2) + 1
 
-    def get_right_child_index(self, index: int) -> int:
+    @staticmethod
+    def get_right_child_index(index: int) -> int:
         return (index * 2) + 2
 
     def has_parent(self, index: int) -> bool:
@@ -83,7 +100,7 @@ class BinHeap:
         self.arr.append(state)
         self.heapify_up(len(self.arr) - 1)
 
-    def pop_root(self) -> State:
+    def pop_root(self) -> Optional[State]:
         if len(self) == 0:
             print("Empty heap")
             return
