@@ -44,9 +44,9 @@ class State:
         f = self.get_f_value() - other.get_f_value()
         if f == 0:
             if tie_break_smaller_g:
-                return other.g_value - self.g_value
-            else:
                 return self.g_value - other.g_value
+            else:
+                return other.g_value - self.g_value
         return f
 
 
@@ -147,16 +147,16 @@ class BinHeap:
 
 
 def main():
-    openlist = BinHeap()
-    openlist.insert(State(Cell(0, 0), 1, 0))
+    openlist = BinHeap(tie_break_smaller_g=False)
+    openlist.insert(State(Cell(0, 0), 1, 4))
     # openlist.print_heap()
-    openlist.insert(State(Cell(1, 1), 5, 0))
+    openlist.insert(State(Cell(1, 1), 2, 3))
     # openlist.print_heap()
     openlist.insert(State(Cell(2, 2), 12, 0))
     # openlist.print_heap()
-    openlist.insert(State(Cell(3, 3), -5, 0))
+    openlist.insert(State(Cell(3, 3), 15, 0))
     # openlist.print_heap()
-    openlist.insert(State(Cell(4, 4), 3, 0))
+    openlist.insert(State(Cell(4, 4), 16, 0))
     openlist.print_heap()
 
     print('popping heap')

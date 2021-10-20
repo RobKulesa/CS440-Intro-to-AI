@@ -102,11 +102,12 @@ class Agent:
             unvisited_neighbors.remove(neighbor)
 
     # Try to compute a path for the agent using forward a star
-    def astar_helper(self, start: Cell, end: Cell, g: list, open_list: BinHeap, visited_blocked: set, search: list, counter: int) -> List[List[Optional[Cell]]]:
+    def astar_helper(self, start: Cell, end: Cell, g: list, h: list, open_list: BinHeap, visited: set, visited_blocked: set, search: list, counter: int) -> List[List[Optional[Cell]]]:
         tree: List[List[Optional[Cell]]] = [[None for i in range(len(self.world))] for j in range(len(self.world))]
         while len(open_list) > 0 and g[end.row][end.col] > open_list.peek().get_f_value():
             # Remove a state s with the smallest f-value
             s = open_list.pop_root()
+            visited.add(s.cell)
             # Explore neighbors
             neighbors = self.get_unvisited_neighbors(s.cell, visited_blocked)
             for neighbor in neighbors:
@@ -119,43 +120,52 @@ class Agent:
                     idx = open_list.index_of(neighbor)
                     if idx > 0:
                         open_list.remove(idx)
-                    open_list.insert(State(neighbor, g[neighbor.row][neighbor.col], World.mhd_cell(neighbor, end)))
+                    open_list.insert(State(neighbor, g[neighbor.row][neighbor.col], h[neighbor.row][neighbor.col]))
         return tree
 
-    def forward_astar(self, start: Cell, end: Cell, tie_break_smaller_g: bool):
+    def forward_astar(self, start: Cell, end: Cell, tie_break_smaller_g: bool, adaptive: bool):
         counter = 0
         search: List[List[int]] = [[0 for i in range(len(self.world))] for j in range(len(self.world))]
         g: List[List[Optional[int]]] = [[None for i in range(len(self.world))] for j in range(len(self.world))]
+        if adaptive:
+            h: List[List[int]] = [[0 for i in range(len(self.world))] for j in range(len(self.world))]
+        else:
+            h: List[List[int]] = [[World.mhd(j, end.row, i, end.col) for i in range(len(self.world))] for j in range(len(self.world))]
         visited_blocked = set()
         while not start.__eq__(end):
             counter += 1
             g[start.row][start.col] = 0
             search[start.row][start.col] = counter
-            g[end.row][end.col] = np.Infinity
+            g[end.row][end.col] = 9999999
             search[end.row][end.col] = counter
-            open_list = BinHeap()
+            open_list = BinHeap(tie_break_smaller_g)
             open_list.insert(State(start, g[start.row][start.col], World.mhd_cell(start, end)))
-            tree = self.astar_helper(start, end, g, open_list, visited_blocked, search, counter)
+            visited = set()
+            tree = self.astar_helper(start, end, g, h, open_list, visited, visited_blocked, search, counter)
 
             if len(open_list) == 0:
                 print('I cannot reach the target ;-;')
                 return
+
+            if adaptive:
+                for item in visited:
+                    h[item.row][item.col] = g[end.row][end.col] - g[item.row][item.col]
             # follow tree pointers from goal state to start state, then move agent along resulting path from start state to goal state until it reaches goal state
             #       or one or more action costs on the path increase;
             path: List[Cell] = list()
             path.insert(0, end)
             while path[0].row != start.row or path[0].col != start.col:
                 path.insert(0, tree[path[0].row][path[0].col])
-            print('path')
-            mystr = ''
-            for item in path:
-                if item is None:
-                    mystr = mystr + '(None) '
-                elif item.row == end.row and item.col == end.col:
-                    mystr = mystr + '[' + str(item.row) + ', ' + str(item.col) + '] '
-                else:
-                    mystr = mystr + '(' + str(item.row) + ', ' + str(item.col) + ') '
-            print(mystr)
+            # print('path')
+            # mystr = ''
+            # for item in path:
+            #     if item is None:
+            #         mystr = mystr + '(None) '
+            #     elif item.row == end.row and item.col == end.col:
+            #         mystr = mystr + '[' + str(item.row) + ', ' + str(item.col) + '] '
+            #     else:
+            #         mystr = mystr + '(' + str(item.row) + ', ' + str(item.col) + ') '
+            # print(mystr)
 
             for item in path[1:]:
                 if item.type == Cell.OBSTACLE:
@@ -165,10 +175,11 @@ class Agent:
                     start = item
         print('I reached the target! :D')
 
-    def backward_astar(self, end: Cell, start: Cell, tie_break_smaller_g: bool):
+    def backward_astar(self, end: Cell, start: Cell, tie_break_smaller_g: bool, adaptive: bool):
         counter = 0
         search: List[List[int]] = [[0 for i in range(len(self.world))] for j in range(len(self.world))]
         g: List[List[Optional[int]]] = [[None for i in range(len(self.world))] for j in range(len(self.world))]
+        h: List[List[int]] = [[World.mhd(j, end.row, i, end.col) for i in range(len(self.world))] for j in range(len(self.world))]
         visited_blocked = set()
         while not start.__eq__(end):
             counter += 1
@@ -178,27 +189,31 @@ class Agent:
             search[end.row][end.col] = counter
             open_list = BinHeap(tie_break_smaller_g)
             open_list.insert(State(start, g[start.row][start.col], World.mhd_cell(start, end)))
-            tree = self.astar_helper(start, end, g, open_list, visited_blocked, search, counter)
+            visited = set()
+            tree = self.astar_helper(start, end, g, h, open_list, visited, visited_blocked, search, counter)
 
             if len(open_list) == 0:
                 print('I cannot reach the target ;-;')
                 return
+            if adaptive:
+                for item in visited:
+                    h[item.row][item.col] = g[end.row][end.col] - g[item.row][item.col]
             # follow tree pointers from goal state to start state, then move agent along resulting path from start state to goal state until it reaches goal state
             #       or one or more action costs on the path increase;
             path: List[Cell] = list()
             path.append(end)
             while path[len(path)-1].row != start.row or path[len(path)-1].col != start.col:
                 path.append(tree[path[len(path)-1].row][path[len(path)-1].col])
-            print('path')
-            mystr = ''
-            for item in path:
-                if item is None:
-                    mystr = mystr + '(None) '
-                elif item.row == end.row and item.col == end.col:
-                    mystr = mystr + '[' + str(item.row) + ', ' + str(item.col) + '] '
-                else:
-                    mystr = mystr + '(' + str(item.row) + ', ' + str(item.col) + ') '
-            print(mystr)
+            # print('path')
+            # mystr = ''
+            # for item in path:
+            #     if item is None:
+            #         mystr = mystr + '(None) '
+            #     elif item.row == end.row and item.col == end.col:
+            #         mystr = mystr + '[' + str(item.row) + ', ' + str(item.col) + '] '
+            #     else:
+            #         mystr = mystr + '(' + str(item.row) + ', ' + str(item.col) + ') '
+            # print(mystr)
 
             for item in path[1:]:
                 if item.type == Cell.OBSTACLE:
@@ -209,7 +224,7 @@ class Agent:
         print('I reached the target! :D')
 
 
-myWorld = World(6)
+myWorld = World(101)
 myAgent = Agent(myWorld)
 myAgent.draw_obstacles()
 
@@ -238,5 +253,6 @@ for row in range(len(myAgent.world.grid)):
             res += str(myAgent.world.grid[row][col]) + ' '
     res += '\n'
 print(res)
-myAgent.forward_astar(start, end, True)
-myAgent.backward_astar(start, end, True)
+myAgent.forward_astar(start, end, tie_break_smaller_g=False, adaptive=True)
+myAgent.forward_astar(start, end, tie_break_smaller_g=False, adaptive=False)
+# myAgent.backward_astar(start, end, True)
