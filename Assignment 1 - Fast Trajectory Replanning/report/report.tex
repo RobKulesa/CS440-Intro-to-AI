@@ -69,7 +69,40 @@
         \textbf{Part 4 - Heuristics in the Adaptive A*}
     \end{center}
     %insert explanation here
+    a) Manhattan distance is defined as the sum of the magnitudes of the difference between the x and y coordinates of a given start and end point. A heuristic is considered consistent if its estimate is always less than or equal to the estimated distance from any neighbouring node to the goal, plus the cost of reaching that neighbour. This can be represented by the following equation:\\
+    \centerline{$h(N) \le c(N, P) + h(P)$ where:} \\
+    $N$ is a node in the gridworld \\
+    $P$ is a neighbor of N\\
+    $h(N)$ is the estimated cost from N to the goal\\
+    $h(P)$ is the estimated cost from P to the goal\\
+    $c(N,P)$ is the cost of reaching node P from N\\
     
+    Assuming A* is inconsistent in a gridworld where only cardinal movement is allowed:\\
+    \centerline{$h(N) > c(N, P) + h(P)$}\\
+    
+    Shifting $h(P)$ to the right side of the equation:\\
+    \centerline{$h(N) - h(P) > c(N, P)$}\\
+    
+    In a gridworld where only cardinal movement is allowed, h(N)-h(P) is equal to the Manhattan distance between N and P:\\
+    \centerline{$|X\textsubscript{N}-X\textsubscript{P}| + |Y\textsubscript{N}-Y\textsubscript{P}| > c(N, P)$}\\
+    
+    The only way the Manhattan distance between N and P could be greater than c(N,P) would be if the agent were to make a diagonal movement. However, since the agent in our gridworld is restricted to cardinal movement, this move is impossible. Thus, Manhattan distance is consistent in gridworlds in which the agent can only move in cardinal directions.\\
+
+    b) Adaptive A* uses the following heuristic:\\
+    \centerline{$h(N) = g(G) - g(N)$ where}
+    $g(N)$ is the distance between the start start and the current node\\
+    $g(G)$ is the distance between the start start and the goal state\\
+    
+    Substituting this into the consistent heuristic function results in the following equation\\
+    \centerline{$g(G) - g(N) \le c(N,P) + g(G) - g(P)$}\\
+    
+    Removing g(G) from both sides of the equation:\\
+    \centerline{$g(P) - g(N) \le c(N,P)$}\\
+    
+    Given that g(P) and g(N) is computed with Manhattan distance\\
+    \centerline{$|X\textsubscript{P}-X\textsubscript{N}| + |Y\textsubscript{P}-Y\textsubscript{N}| \le c(N, P)$}\\
+    
+    Since adaptive A* is being conducted in a gridworld where only cardinal movement is possible, the cost of movement between nodes N and P can never exceed the Manhattan distance between N and P. Thus, adaptive A* maintains the consistency of the h-values.
     
     \begin{center}
         \Large
