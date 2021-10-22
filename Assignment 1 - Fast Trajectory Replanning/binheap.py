@@ -7,6 +7,7 @@ class Cell:
     OBSTACLE = '*'
     PLAYER = 'P'
     TARGET = '$'
+    PATH = '-'
 
     # def can_move_to(self):
     #     return self.type == Cell.EMPTY # or self.type == Cell.TARGET
