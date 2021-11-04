@@ -2,7 +2,7 @@ from typing import List, Optional
 
 
 class Cell:
-    NULL = '-'
+    NULL = '.'
     EMPTY = '█'
     OBSTACLE = '*'
     PLAYER = 'P'
