@@ -62,7 +62,24 @@
     \normalsize
     \begin{enumerate}
         \item[(a)] %insert explanation here
-        \item[(b)] %insert explanation here
+          BFS: $1 \rightarrow 2 \rightarrow 3\rightarrow 4 \rightarrow 5 \rightarrow 6 \rightarrow 7 \rightarrow 8 \rightarrow9\rightarrow10\rightarrow11$\\
+          DLS: $1\rightarrow2\rightarrow4\rightarrow8\rightarrow9\rightarrow5\rightarrow10\rightarrow11$\\
+          IDS: \\
+          $1$\\
+          $1\rightarrow2\rightarrow3$\\
+          $1\rightarrow2\rightarrow3\rightarrow4\rightarrow5\rightarrow3\rightarrow6\rightarrow7$\\
+          $1\rightarrow2\rightarrow4\rightarrow8\rightarrow9\rightarrow5\rightarrow10\rightarrow11$
+        
+        \item[(b)] %insert explanation here\\
+        Bidirectional search would be effective in solving this problem. Bidirectionally finding a path between state 1 and state 11 reduces the number of nodes that needs to be explored.
+        
+        Forward   1\\
+        Backward  11\\
+        Forward   2\\
+        Backward  5
+        
+        The branching factor is 2 in the forward direction and 1 in the reverse direction.
+        
     \end{enumerate}
 
     \begin{center}
@@ -110,8 +127,13 @@
     \normalsize
     \begin{enumerate}
         \item[(a)] %insert explanation here
+        \image{minmax_tree.jpg}
+        The optimal choice for the max player would be the right node.
         \item[(b)] %insert explanation here
+        \image{l2r_minmax_tree.jpg}
         \item[(c)] %insert explanation here
+        \image{r2l_minmax_tree.jpg}
+        Alpha-beta pruning is a heuristic that depends heavily on where elements are positioned, as it only operates on the best values found so far when exploring the tree. If the algorithm happens to find the 'best' node first then it can 'prune' more nodes from the tree. This is the case in right-to-left pruning, which, due to how the elements were positioned, was able to find the 'best' value more quickly and prune more nodes.
     \end{enumerate}
 
     \begin{center}
