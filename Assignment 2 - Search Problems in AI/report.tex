@@ -6,6 +6,7 @@
 
 % Packages
 \usepackage{amsmath}
+\usepackage{graphicx}
 
 % Document
 \begin{document}
@@ -81,7 +82,9 @@
           $1\rightarrow2\rightarrow4\rightarrow8\rightarrow9\rightarrow5\rightarrow10\rightarrow11$
         
         \item[(b)] %insert explanation here\\
-        Bidirectional search would be effective in solving this problem. Bidirectionally finding a path between state 1 and state 11 reduces the number of nodes that needs to be explored.
+        Bidirectional search would be effective in solving this problem.
+        Bidirectionally finding a path between state 1 and state 11 reduces
+        the number of nodes that needs to be explored.
         
         Forward   1\\
         Backward  11\\
@@ -98,15 +101,15 @@
     \end{center}
     \normalsize
     \begin{enumerate}
-        \item[(a)] %insert explanation here
-        \item[(b)] %insert explanation here
-        \item[(c)] %insert explanation here
-        \item[(d)] %insert explanation here
-        \item[(e)] %insert explanation here
-        \item[(f)] %insert explanation here
-        \item[(g)] %insert explanation here
-        \item[(h)] %insert explanation here
-        \item[(i)] %insert explanation here
+        \item[(a)] True
+        \item[(b)] True
+        \item[(c)] True
+        \item[(d)] False
+        \item[(e)] False
+        \item[(f)] True
+        \item[(g)] True
+        \item[(h)] True
+        \item[(i)] True
     \end{enumerate}
 
     \begin{center}
@@ -141,14 +144,20 @@
         $h(n-2) \leq h^*(n-2)$\\
         By inductive reasoning, consistency implies admissibility\\\\
     b)\\
-    \image{prob_5_heuristic.jpg}
+    \includegraphics[width=0.9\textwidth]{images/prob_5_heuristic.jpg}
     
     \begin{center}
         \Large
         \textbf{Problem 6}
     \end{center}
     \normalsize
-    %insert explanation here
+    In solving Constraint Satisfaction Problems, we choose the most constrained variable (MCV)
+    in order to reduce the size of the next sub-problem.
+    In other words, choosing the MCV maximally reduces the size of the next branch among
+    any of the other variables. \\
+    When assigning a value for this variable, we want to leave the remaining variables as unconstrained
+    as possible in order to not accidentally eliminate any valid solutions.
+    Thus, we want to assign the MCV the least constraining value (LCV).
 
     \begin{center}
         \Large
@@ -156,14 +165,22 @@
     \end{center}
     \normalsize
     \begin{enumerate}
-        \item[(a)] %insert explanation here
-        \image{minmax_tree.jpg}
-        The optimal choice for the max player would be the right node.
+        \item[(a)]
+            \begin{minipage}[!htb]{\linewidth}
+                \includegraphics[width=\linewidth]{images/minmax_tree.jpg} \\
+                \caption{The optimal choice for the max player would be the right node.}
+            \end{minipage}
+
         \item[(b)] %insert explanation here
-        \image{l2r_minmax_tree.jpg}
+            \begin{minipage}[!htb]{\linewidth}
+                \includegraphics[width=\linewidth]{images/l2r_minmax_tree.jpg} \\
+            \end{minipage}
+
         \item[(c)] %insert explanation here
-        \image{r2l_minmax_tree.jpg}
-        Alpha-beta pruning is a heuristic that depends heavily on where elements are positioned, as it only operates on the best values found so far when exploring the tree. If the algorithm happens to find the 'best' node first then it can 'prune' more nodes from the tree. This is the case in right-to-left pruning, which, due to how the elements were positioned, was able to find the 'best' value more quickly and prune more nodes.
+            \begin{minipage}[!htb]{\linewidth}
+                \includegraphics[width=\linewidth]{images/r2l_minmax_tree.jpg} \\
+                Alpha-beta pruning is a heuristic that depends heavily on where elements are positioned, as it only operates on the best values found so far when exploring the tree. If the algorithm happens to find the 'best' node first then it can 'prune' more nodes from the tree. This is the case in right-to-left pruning, which, due to how the elements were positioned, was able to find the 'best' value more quickly and prune more nodes.
+            \end{minipage}
     \end{enumerate}
 
     \begin{center}

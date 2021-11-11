@@ -1,0 +1,23 @@
+<component name="ProjectRunConfigurationManager">
+  <configuration default="false" name="report (1)" type="LATEX_RUN_CONFIGURATION" factoryName="LaTeX configuration factory">
+    <texify>
+      <compiler>PDFLATEX</compiler>
+      <compiler-path />
+      <sumatra-path />
+      <pdf-viewer>BUILT-IN-PDF-VIEWER</pdf-viewer>
+      <viewer-command />
+      <compiler-arguments />
+      <envs />
+      <main-file>$PROJECT_DIR$/Assignment 2 - Search Problems in AI/report.tex</main-file>
+      <output-path>$PROJECT_DIR$/Assignment 2 - Search Problems in AI/out</output-path>
+      <auxil-path>$PROJECT_DIR$/Assignment 2 - Search Problems in AI/auxil</auxil-path>
+      <compile-twice>false</compile-twice>
+      <output-format>PDF</output-format>
+      <latex-distribution>MIKTEX</latex-distribution>
+      <has-been-run>true</has-been-run>
+      <bib-run-config>[]</bib-run-config>
+      <makeindex-run-config>[]</makeindex-run-config>
+    </texify>
+    <method v="2" />
+  </configuration>
+</component>
