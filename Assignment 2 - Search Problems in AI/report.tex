@@ -112,7 +112,27 @@
     \end{center}
     \normalsize
     %insert explanation here
-
+    a)\\
+    A heuristic is considered consistent iff:\\
+        $h(n) \leq c(n,n+1) + h(n+1)$\\
+        where h() is the heuristic and n is the goal state\\
+        Proving by induction with the $n-1$ node in the shortest path to $n$ (base step):\\
+        $h(n-1) \leq c(n-1,n) + h(n)$\\
+        since n is the goal state, $h(n)=h^*(n)$, where $h^*(n)$ is the true minimal cost to the goal state\\
+        $h(n) \leq c(n-1,n) + h^*(n)$\\
+        given $c(n-1) + h^*(n) = h^*(n-1)$\\
+        $h(n-1) \leq h^*(n-1)$\\
+        which is the definition of admissibility\\\\
+        Inductive Step with $n-2$:\\
+        $h(n-2) \leq c(n-2,n-1) + h(n-1)$\\
+        drawing from the base case:\\
+        $h(n-2) \leq c(n-2,n-1) + h(n-1) \leq c(n-2,n-1) + h^*(n-1)$\\
+        $h(n-2)\leq c(n-2,n-1) + h^*(n-1)$\\
+        $h(n-2) \leq h^*(n-2)$\\
+        By inductive reasoning, consistency implies admissibility\\\\
+    b)\\
+    \image{prob_5_heuristic.jpg}
+    
     \begin{center}
         \Large
         \textbf{Problem 6}
