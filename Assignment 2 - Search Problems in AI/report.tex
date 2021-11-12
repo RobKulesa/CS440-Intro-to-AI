@@ -263,12 +263,21 @@
     \end{center}
     \normalsize
     \begin{enumerate}
-        \item[(a)] %insert explanation here
+        \item[(a)] 
+        In problems that possess no local maxima in their cost function, hill climbing would work better. Hill climbing typically gets stuck within             local maxima. This is because in hill climbing, downward moves are prohibited, whereas in simulated annealing, downward moves are allowed               and thus, it is able to escape the local maxima.
+        
         \item[(b)] %insert explanation here
+        In problems where the cost function does not have any defined structure neighboring the global maximum is when randomly guessing the state                  will work as well as simulated annealing. This is because since there is no real structure, it is hard to determine a pattern and one                   would not know how to most efficiently reach the solution.
         \item[(c)] %insert explanation here
+        In problems where the cost function possesses some local maxima along with having a defined overall global structure, simulated annealing               would be useful. 
         \item[(d)] %insert explanation here
+        Instead of returning the current state at the end of the annealing schedule, we could create a maximum variable that will store the highest             value (measure of goodness) throughout the process. Should simulated annealing stop at a lower value, we will still be able to return the               maximum value, which will be the global maximum. 
+
         \item[(e)] %insert explanation here
+        Since we have enough memory that we could hold two million states, instead of just storing the current state and the next proposed state, we            could instead store every state that we visit and mark them. We update the states should we find a higher value than the maximum so far. Once           the annealing schedule ends, should we end up with a current end value less than the maximum, we can return the maximum instead by looking              through our states that we have stored. 
+
         \item[(f)] %insert explanation here
+        In simulated annealing, being trapped at a local maxima can be can avoided since it utilizes randomness that can either increase the objective          function or decrease it, allowing it to escape out of the maxima. The probability of decreases not as likely as increases, and gets less                likely as time goes on. We can adapt this randomness to gradient ascent to avoid local maxima by choosing the gradient randomly. Similar to               simulated annealing, should the gradient get stuck in a local maxima, the randomness will allow it to escape when the gradient is                         decreased at random.
     \end{enumerate}
 
 
