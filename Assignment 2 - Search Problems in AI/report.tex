@@ -117,7 +117,14 @@
         \textbf{Problem 4}
     \end{center}
     \normalsize
-    %insert explanation here
+    \begin{enumerate}
+        \item[Advantage:]
+        While the BFS algorithm has a space complexity of $\mathcal{O}(b^d)$, where $b$ is the tree branching factor
+        and $d$ is the depth of the tree, the iterative deepening search algorithm (IDDFS) has a space complexity of $\mathcal{O}(bd)$.
+        In short, IDDFS saves on space while still being complete.
+        \item[Disadvantage:] IDDFS is slightly slower than BFS, since while nodes at the bottom of the search
+        tree are only expanded once, the number of expansions for each node increments at each higher level in the tree.
+    \end{enumerate}
 
     \begin{center}
         \Large
