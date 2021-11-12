@@ -144,7 +144,7 @@
         $h(n-2) \leq h^*(n-2)$\\
         By inductive reasoning, consistency implies admissibility\\\\
     b)\\
-    \includegraphics[width=0.9\textwidth]{images/prob_5_heuristic.jpg}
+    \includegraphics[width=0.9\textwidth]{images/prob_5_heuristic}
     
     \begin{center}
         \Large
@@ -167,18 +167,18 @@
     \begin{enumerate}
         \item[(a)]
             \begin{minipage}[!htb]{\linewidth}
-                \includegraphics[width=\linewidth]{images/minmax_tree.jpg} \\
-                \caption{The optimal choice for the max player would be the right node.}
+                \includegraphics[width=\linewidth]{images/minmax_tree} \\
+                The optimal choice for the max player would be the right node.
             \end{minipage}
 
         \item[(b)] %insert explanation here
             \begin{minipage}[!htb]{\linewidth}
-                \includegraphics[width=\linewidth]{images/l2r_minmax_tree.jpg} \\
+                \includegraphics[width=\linewidth]{images/l2r_minmax_tree} \\
             \end{minipage}
 
         \item[(c)] %insert explanation here
             \begin{minipage}[!htb]{\linewidth}
-                \includegraphics[width=\linewidth]{images/r2l_minmax_tree.jpg} \\
+                \includegraphics[width=\linewidth]{images/r2l_minmax_tree} \\
                 Alpha-beta pruning is a heuristic that depends heavily on where elements are positioned, as it only operates on the best values found so far when exploring the tree. If the algorithm happens to find the 'best' node first then it can 'prune' more nodes from the tree. This is the case in right-to-left pruning, which, due to how the elements were positioned, was able to find the 'best' value more quickly and prune more nodes.
             \end{minipage}
     \end{enumerate}
@@ -189,9 +189,60 @@
     \end{center}
     \normalsize
     \begin{enumerate}
-        \item[(a)] %insert explanation here
-        \item[(b)] %insert explanation here
-        \item[(c)] %insert explanation here
+        \item[(a)]
+            \begin{enumerate}
+                \item[i.] Given both heuristics $h_1$ and $h_2$ are admissible,
+                \[h(n) = min\{h_1(n), h_2(n)\}\] is an admissible heuristic.
+                Since both heuristics never overestimate the true cost of getting to the target state, then choosing the minimum
+                of these two heuristic values for each state is an admissible heuristic, as none of the
+                new values will overestimate the true cost of getting to the target state.
+                \item[ii.] Given both heuristics $h_1$ and $h_2$ are consistent: \\
+                Since $h_1(n) \leq c(n, n') + h_1(n')$ and $h_2(n) \leq c(n, n') + h_2(n')$,
+                \begin{gather*}
+                    h(n) \leq min\{c(n, n') + h_1(n'), c(n, n') + h_2(n')\}\\
+                    h(n) \leq min\{h_1(n'), h_2(n')\} + c(n, n')
+                \end{gather*}
+                Substituting $h(n')$ for $min\{h_1(n'), h_2(n')\}$,
+                \[h(n) \leq h(n') + c(n, n')\]
+                Thus, $h(n) = min\{h_1(n), h_2(n)\}$ is a consistent heuristic.
+            \end{enumerate}
+
+        \item[(b)]
+            \begin{enumerate}
+                \item[i.] Given both heuristics $h_1$ and $h_2$ are admissible,
+                \[h(n) = wh_1(n)+(1-w)h_2(n)\] is an admissible heuristic.
+                Since both heuristics never overestimate the true cost of getting to the target state, then choosing
+                a value between these two heuristic values for each state is an admissible heuristic, as none of the
+                new values will overestimate the true cost of getting to the target state.
+                \item[ii.] Given both heuristics $h_1$ and $h_2$ are consistent: \\
+                Since $h_1(n) \leq c(n, n') + h_1(n')$ and $h_2(n) \leq c(n, n') + h_2(n')$,
+                \begin{gather*}
+                    h(n) \leq w\left(c(n, n') + h_1(n')\right)+(1-w)\left(c(n, n') + h_2(n')\right)\\
+                    h(n) \leq wh_1(n')+(1-w)h_2(n') + wc(n, n') + (1-w)c(n, n')\\
+                    h(n) \leq wh_1(n')+(1-w)h_2(n') + c(n, n')
+                \end{gather*}
+                Substituting $h(n')$ for $wh_1(n)+(1-w)h_2(n)$,
+                \[h(n) \leq h(n') + c(n, n')\]
+                Thus, $h(n) = wh_1(n)+(1-w)h_2(n)$ is a consistent heuristic.
+            \end{enumerate}
+
+        \item[(c)]
+            \begin{enumerate}
+                \item[i.] Given both heuristics $h_1$ and $h_2$ are admissible,
+                \[h(n) = max\{h_1(n), h_2(n)\}\] is an admissible heuristic.
+                Since both heuristics never overestimate the true cost of getting to the target state, then choosing the maximum
+                of these two heuristic values for each state is an admissible heuristic, as none of the
+                new values will overestimate the true cost of getting to the target state.
+                \item[ii.] Given both heuristics $h_1$ and $h_2$ are consistent: \\
+                Since $h_1(n) \leq c(n, n') + h_1(n')$ and $h_2(n) \leq c(n, n') + h_2(n')$,
+                \begin{gather*}
+                    h(n) \leq max\{c(n, n') + h_1(n'), c(n, n') + h_2(n')\}\\
+                    h(n) \leq max\{h_1(n'), h_2(n')\} + c(n, n')
+                \end{gather*}
+                Substituting $h(n')$ for $max\{h_1(n'), h_2(n')\}$,
+                \[h(n) \leq h(n') + c(n, n')\]
+                Thus, $h(n) = max\{h_1(n), h_2(n)\}$ is a consistent heuristic.
+            \end{enumerate}
     \end{enumerate}
 
     \begin{center}
