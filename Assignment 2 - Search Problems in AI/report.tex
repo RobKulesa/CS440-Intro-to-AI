@@ -243,6 +243,11 @@
                 \[h(n) \leq h(n') + c(n, n')\]
                 Thus, $h(n) = max\{h_1(n), h_2(n)\}$ is a consistent heuristic.
             \end{enumerate}
+        \item[(d)] Heuristic C, $h(n) = max\{h_1(n), h_2(n)\}$, should be chosen.
+        For consistent heuristics, higher cost estimation values (without going over) are better,
+        as less states will be explored before reaching the goal state.
+        Thus, a heuristic that chooses the maximum among two consistent heuristics for each state is preferred
+        over the other options.
     \end{enumerate}
 
     \begin{center}
