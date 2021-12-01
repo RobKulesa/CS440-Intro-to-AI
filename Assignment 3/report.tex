@@ -49,7 +49,8 @@
         \textbf{Problem 1}
     \end{center}
     \normalsize
-
+    \includegraphics[width=\linewidth]{images/game_tree} \\
+    "?" values are used to annotate loop states. When an agent has to choose between a +1 value and a "?" value (+1,?) the max player will always choose +1 while the min player will choose ?, and vice versa for (-1,?), with the min player choosing -1 and the max player choosing "?". Since the game value of a loop state is unknown, it is best for a max/min player to choose the corresponding max/min value if it is available, however if that value is not available the "?" state is a viable option to explore as it cannot be worse than an immediate loss. If all the successors of a state have a "?" value, the backed-up value is also "?".
 
     \begin{center}
         \Large
@@ -66,18 +67,12 @@
         \textbf{Problem 3}
     \end{center}
     \normalsize
-    \begin{enumerate}
-
-    \end{enumerate}
 
     \begin{center}
         \Large
         \textbf{Problem 4}
     \end{center}
     \normalsize
-    \begin{enumerate}
-
-    \end{enumerate}
 
 
     
