@@ -65,9 +65,27 @@
     \end{center}
     \normalsize
     \begin{enumerate}
-        \item[(a)]
-        \item[(b)]
-        \item[(c)]
+        \item[(a)] Computing the joint probability distribution:
+            \begin{gather*}
+                P(a, b, c, d, e) = P(a)*P(b)*P(c)*P(d|a,b)*P(e|b,c)\\
+                P(a, b, c, d, e) = 0.2*0.5*0.8*0.1*0.3\\
+                P(a, b, c, d, e) = 0.0024
+            \end{gather*}
+        \item[(b)] Computing the joint probability distribution:
+            \begin{gather*}
+                P(\neg{a}, \neg{b}, \neg{c}, \neg{d}, \neg{e}) = P(\neg{a})*P(\neg{b})*P(\neg{c})*P(\neg{d}|\neg{a},\neg{b})*P(\neg{e}|\neg{b},\neg{c})\\
+                P(\neg{a}, \neg{b}, \neg{c}, \neg{d}, \neg{e}) = 0.8*0.5*0.2*0.1*0.8\\
+                P(\neg{a}, \neg{b}, \neg{c}, \neg{d}, \neg{e}) = 0.0064
+            \end{gather*}
+        \item[(c)] Using the conditional probability rule $P(A|B) = \frac{P(A\bigcap B)}{P(B)}$
+            \begin{gather*}
+                P(\neg{a} | b, c, d, e) = \frac{P(\neg{a}, b, c, d, e)}{P(b, c, d, e)}\\
+                P(\neg{a} | b, c, d, e) = \frac{P(\neg{a}, b, c, d, e)}{P(a, b, c, d, e) + P(\neg{a}, b, c, d, e)}\\
+                P(\neg{a} | b, c, d, e) = \frac{P(\neg{a})*P(b)*P(c)*P(d|\neg{a},b)*P(e|b,c)}{0.0024 + P(\neg{a})*P(b)*P(c)*P(d|\neg{a},b)*P(e|b,c)}\\
+                P(\neg{a} | b, c, d, e) = \frac{0.8*0.5*0.8*0.6*0.3}{0.0024 + 0.8*0.5*0.8*0.6*0.3}\\
+                P(\neg{a} | b, c, d, e) = \frac{0.0576}{0.0024 + 0.0576}\\
+                P(\neg{a} | b, c, d, e) = 0.96
+            \end{gather*}
     \end{enumerate}
 
     \begin{center}
