@@ -96,12 +96,50 @@
     \begin{enumerate}
         \item[(a)]
             \begin{gather*}
-                \alpha = \frac{1}{P(\neg{b}, j, m) + P(b, j, m)}\\
-                P(b|j,m) = \alpha\sum_{e}\sum_{a}P(b,j,m,e,a)\\
-                P(b|j,m) = \alpha P(b) \sum_{e} P(e) \sum_{a} P(a|b,e) P(j|a) P(m|a)\\
-                P(b|j,m) = \alpha*0.001*
+                P(b|j,m) = \alpha*P(b,j,m)\\
+                \alpha = \frac{1}{P(\neg{b}, j, m) + P(b, j, m)}
             \end{gather*}
-        \item[(b)]
+            \begin{gather*}
+                P(b,j,m) = \sum_{e}\sum_{a}P(b,j,m,e,a)\\
+                P(b,j,m) = P(b) \sum_{e} P(e) \sum_{a} P(a|b,e) P(j|a) P(m|a)\\
+                P(b,j,m) =
+                    0.001*0.002*0.95*0.9*0.7+
+                    0.001*0.002*0.05*0.05*0.01+\\
+                    0.001*0.998*0.94*0.9*0.7+
+                    0.001*0.998*0.06*0.05*0.01\\
+                P(b,j,m) = 0.00059224259\\
+            \end{gather*}
+            \begin{gather*}
+                P(\neg{b},j,m) = \sum_{e}\sum_{a}P(\neg{b},j,m,e,a)\\
+                P(\neg{b},j,m) = P(\neg{b}) \sum_{e} P(e) \sum_{a} P(a|\neg{b},e) P(j|a) P(m|a)\\
+                P(\neg{b},j,m) =
+                    0.999*0.002*0.29*0.9*0.7+
+                    0.999*0.002*0.71*0.05*0.01+\\
+                    0.999*0.998*0.001*0.9*0.7+
+                    0.999*0.998*0.999*0.05*0.01\\
+                P(\neg{b},j,m) = 0.00149185764
+            \end{gather*}
+            \begin{gather*}
+                \alpha = \frac{1}{P(\neg{b}, j, m) + P(b, j, m)}\\
+                \alpha = \frac{1}{0.00149185764 + 0.00059224259}\\
+                \alpha = \frac{1}{0.00208410023}\\
+            \end{gather*}
+            \begin{gather*}
+                P(b|j,m) = \alpha*P(b,j,m)\\
+                P(b|j,m) = \frac{0.00059224259}{0.00208410023}\\
+                P(b|j,m) = 0.28417183659
+            \end{gather*}
+        Therefore, the probability of a burglary given that John and Mary both called, is
+        $0.28417183659$.
+        \item[(b)] In a Bayesian network in the form of a chain, using the enumeration
+        method has a worst case runtime of $\mathcal{O}(2^n)$, as moving down each level
+        in the chain generates another level in a binary tree.\\
+
+        Using the variable elimination method, moving down each level in the Bayesian network
+        chain only adds one additional problem to compute (point-wise product of factors), as each node in the
+        network only has one parent.
+        Thus, the variable elimination method has a worst case
+        runtime of $\mathcal{O}(n)$.
     \end{enumerate}
 
     \begin{center}
