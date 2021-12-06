@@ -7,21 +7,21 @@ import os
 from knn import KNN
 
 
-def load_labels_file(filename: str, n: int):
+def load_labels_file(filename: str):
     lines = read_lines(filename)
     labels = list()
-    for line in lines[:min(n, len(lines))]:
+    for line in lines:
         if line == '':
             break
         labels.append(int(line))
     return labels
 
 
-def load_data_file(filename: str, n: int, width: int, height: int) -> np.array:
+def load_data_file(filename: str, width: int, height: int) -> np.array:
     lines = read_lines(filename)
     lines.reverse()
     items = list()
-    for i in range(n):
+    while len(lines) > 0:
         data = list()
         for j in range(height):
             if len(lines) == 0:
@@ -59,25 +59,52 @@ def translate_pixels(line: str) -> List[int]:
 
 
 def main():
+    dset = input('Choose dataset (face, digits): ')
+    training_percent = float(input('Enter percent of training data to use (10, 20, etc): ')) / 100
+
+    if dset == 'digits':
+        width = 28
+        height = 28
+    else:
+        width = 60
+        height = 70
+
     # plt.imshow(data[0].reshape(height, width), cmap="gray")
     # plt.show()
-    width = 28
-    height = 28
 
-    training_size = 5000
-    training_data = load_data_file("data/digitdata/trainingimages", training_size, width, height)
-    training_labels = load_labels_file("data/digitdata/traininglabels", training_size)
+    print('Getting training data...')
+    training_data = load_data_file("data/digitdata/trainingimages", width, height)
+    training_labels = load_labels_file("data/digitdata/traininglabels")
     df_train = pd.DataFrame(data=training_data)
     df_train.insert(loc=df_train.shape[1], column='label', value=training_labels)
-    my_knn = KNN(df_train)
+    df_train_sample = df_train.sample(n=int(len(training_labels)*training_percent))
 
-    test_size = 1000
-    test_data = load_data_file("data/digitdata/testimages", test_size, width, height)
-    test_labels = load_labels_file("data/digitdata/testlabels", test_size)
+    print('Training KNN model...')
+    my_knn = KNN(df_train_sample, dset='digits')
 
-    i = 66
-    prediction = my_knn.knn(test_data[i], k=500)
-    print(f'Prediction is {prediction}, actual is {test_labels[i]}')
+    print('Getting test data...')
+    test_data = load_data_file("data/digitdata/testimages", width, height)
+    test_labels = load_labels_file("data/digitdata/testlabels")
+
+    k_vals = {35: 0, 21: 0, 15: 0, 11: 0, 5: 0, 3: 0, 1: 0}
+
+    print('Testing %d%% of test data', ())
+    for i, test in enumerate(test_data):
+        predictions = my_knn.knn(test, k_vals)
+        for idx, k_val in enumerate(k_vals):
+            if predictions[idx] == test_labels[i]:
+                k_vals[k_val] += 1
+
+        if i > len(test_labels) * .95:
+            print('\t95% complete...')
+        elif i > test_size * .75:
+            print('\t75% complete...')
+        elif i > test_size * .5:
+            print('\t50% complete...')
+        elif i > test_size * .25:
+            print('\t25% complete...')
+
+    print(k_vals)
 
 
 if __name__ == '__main__':
