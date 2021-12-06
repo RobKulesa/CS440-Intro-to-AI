@@ -274,25 +274,25 @@ def runClassifier(args, options):
     num_test = options.test
 
     if options.data == "faces":
-        raw_training_data = samples.loadDataFile("data/facedata/facedatatrain", num_training, FACE_DATUM_WIDTH,
+        raw_training_data = samples.loadDataFile("../data/facedata/facedatatrain", num_training, FACE_DATUM_WIDTH,
                                                  FACE_DATUM_HEIGHT)
-        training_labels = samples.loadLabelsFile("data/facedata/facedatatrainlabels", num_training)
-        raw_validation_data = samples.loadDataFile("data/facedata/facedatatrain", num_test, FACE_DATUM_WIDTH,
+        training_labels = samples.loadLabelsFile("../data/facedata/facedatatrainlabels", num_training)
+        raw_validation_data = samples.loadDataFile("../data/facedata/facedatatrain", num_test, FACE_DATUM_WIDTH,
                                                    FACE_DATUM_HEIGHT)
-        validation_labels = samples.loadLabelsFile("data/facedata/facedatatrainlabels", num_test)
-        raw_test_data = samples.loadDataFile("data/facedata/facedatatest", num_test, FACE_DATUM_WIDTH,
+        validation_labels = samples.loadLabelsFile("../data/facedata/facedatatrainlabels", num_test)
+        raw_test_data = samples.loadDataFile("../data/facedata/facedatatest", num_test, FACE_DATUM_WIDTH,
                                              FACE_DATUM_HEIGHT)
-        test_labels = samples.loadLabelsFile("data/facedata/facedatatestlabels", num_test)
+        test_labels = samples.loadLabelsFile("../data/facedata/facedatatestlabels", num_test)
     else:
-        raw_training_data = samples.loadDataFile("data/digitdata/trainingimages", num_training, DIGIT_DATUM_WIDTH,
+        raw_training_data = samples.loadDataFile("../data/digitdata/trainingimages", num_training, DIGIT_DATUM_WIDTH,
                                                  DIGIT_DATUM_HEIGHT)
-        training_labels = samples.loadLabelsFile("data/digitdata/traininglabels", num_training)
-        raw_validation_data = samples.loadDataFile("data/digitdata/validationimages", num_test, DIGIT_DATUM_WIDTH,
+        training_labels = samples.loadLabelsFile("../data/digitdata/traininglabels", num_training)
+        raw_validation_data = samples.loadDataFile("../data/digitdata/validationimages", num_test, DIGIT_DATUM_WIDTH,
                                                    DIGIT_DATUM_HEIGHT)
-        validation_labels = samples.loadLabelsFile("data/digitdata/validationlabels", num_test)
-        raw_test_data = samples.loadDataFile("data/digitdata/testimages", num_test, DIGIT_DATUM_WIDTH,
+        validation_labels = samples.loadLabelsFile("../data/digitdata/validationlabels", num_test)
+        raw_test_data = samples.loadDataFile("../data/digitdata/testimages", num_test, DIGIT_DATUM_WIDTH,
                                              DIGIT_DATUM_HEIGHT)
-        test_labels = samples.loadLabelsFile("data/digitdata/testlabels", num_test)
+        test_labels = samples.loadLabelsFile("../data/digitdata/testlabels", num_test)
 
     # Extract features
     print("Extracting features...")

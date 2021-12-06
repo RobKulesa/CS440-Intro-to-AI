@@ -76,7 +76,7 @@ def readlines(filename):
     if os.path.exists(filename):
         return [l[:-1] for l in open(filename).readlines()]
     else:
-        z = zipfile.ZipFile('../../../Desktop/classification/data.zip')
+        z = zipfile.ZipFile('../../../../Desktop/classification/data.zip')
         return z.read(filename).split('\n')
 
 
@@ -123,8 +123,8 @@ def _test():
     n = 1
     #  items = loadDataFile("data/facedata/facedatatrain", n,60,70)
     #  labels = loadLabelsFile("data/facedata/facedatatrainlabels", n)
-    items = loadDataFile("data/digitdata/trainingimages", n, 28, 28)
-    labels = loadLabelsFile("data/digitdata/traininglabels", n)
+    items = loadDataFile("../data/digitdata/trainingimages", n, 28, 28)
+    labels = loadLabelsFile("../data/digitdata/traininglabels", n)
     for i in range(1):
         print(items[i])
         print(items[i])
