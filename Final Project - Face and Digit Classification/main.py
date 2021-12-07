@@ -27,14 +27,8 @@ def load_data_file(filename: str, width: int, height: int) -> np.array:
             if len(lines) == 0:
                 return np.array(items)
             line = lines.pop()
-            # print(line)
             data.extend(translate_pixels(line))
         data = np.array(data, dtype=int)
-        # print()
-        if len(data) < width - 1:
-            # we encountered end of file...
-            print("Truncating at %d examples (maximum)" % i)
-            break
         items.append(data)
     return np.array(items)
 
@@ -60,49 +54,57 @@ def translate_pixels(line: str) -> List[int]:
 
 def main():
     dset = input('Choose dataset (face, digits): ')
-    training_percent = float(input('Enter percent of training data to use (10, 20, etc): ')) / 100
+    training_percent = int(input('Enter percent of training data to use (10, 20, etc): '))
+
+    print('Getting data...')
 
     if dset == 'digits':
         width = 28
         height = 28
+        training_data = load_data_file("data/digitdata/trainingimages", width, height)
+        training_labels = load_labels_file("data/digitdata/traininglabels")
+        test_data = load_data_file("data/digitdata/testimages", width, height)
+        test_labels = load_labels_file("data/digitdata/testlabels")
     else:
         width = 60
         height = 70
+        training_data = load_data_file("data/facedata/facedatatrain", width, height)
+        training_labels = load_labels_file("data/facedata/facedatatrainlabels")
+        test_data = load_data_file("data/facedata/facedatatest", width, height)
+        test_labels = load_labels_file("data/facedata/facedatatestlabels")
 
-    # plt.imshow(data[0].reshape(height, width), cmap="gray")
-    # plt.show()
-
-    print('Getting training data...')
-    training_data = load_data_file("data/digitdata/trainingimages", width, height)
-    training_labels = load_labels_file("data/digitdata/traininglabels")
     df_train = pd.DataFrame(data=training_data)
     df_train.insert(loc=df_train.shape[1], column='label', value=training_labels)
-    df_train_sample = df_train.sample(n=int(len(training_labels)*training_percent))
+    if training_percent == 100:
+        df_train_sample = df_train
+    else:
+        df_train_sample = df_train.sample(frac=training_percent / 100)
 
     print('Training KNN model...')
-    my_knn = KNN(df_train_sample, dset='digits')
-
-    print('Getting test data...')
-    test_data = load_data_file("data/digitdata/testimages", width, height)
-    test_labels = load_labels_file("data/digitdata/testlabels")
+    my_knn = KNN(df_train_sample, dset=dset)
 
     k_vals = {35: 0, 21: 0, 15: 0, 11: 0, 5: 0, 3: 0, 1: 0}
 
-    print('Testing %d%% of test data', ())
+    print_counter = 0
+    print('Testing on %d%% of training data' % training_percent)
     for i, test in enumerate(test_data):
         predictions = my_knn.knn(test, k_vals)
         for idx, k_val in enumerate(k_vals):
             if predictions[idx] == test_labels[i]:
                 k_vals[k_val] += 1
 
-        if i > len(test_labels) * .95:
+        if i > len(test_labels) * .95 and print_counter == 3:
+            print_counter += 1
             print('\t95% complete...')
-        elif i > test_size * .75:
+        elif i > len(test_labels) * .75 and print_counter == 2:
+            print_counter += 1
             print('\t75% complete...')
-        elif i > test_size * .5:
+        elif i > len(test_labels) * .5 and print_counter == 1:
+            print_counter += 1
             print('\t50% complete...')
-        elif i > test_size * .25:
+        elif i > len(test_labels) * .25 and print_counter == 0:
             print('\t25% complete...')
+            print_counter += 1
 
     print(k_vals)
 

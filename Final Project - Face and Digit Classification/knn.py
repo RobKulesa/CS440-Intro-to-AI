@@ -12,13 +12,11 @@ class KNN:
 
     def knn(self, test, k_vals: dict) -> List[int]:
         distances = list()
-        for i in range(self.data.shape[0]):
+        for i, row in self.data.iterrows():
             if self.dset == 'digits':
-                distances.append((KNN.euclidean_distance(test, self.data.loc[i][:-1]),
-                                  self.data.loc[i]['label']))
+                distances.append((KNN.euclidean_distance(test, row[:-1]), row['label']))
             else:
-                distances.append((KNN.cosine_distance(test, self.data.loc[i][:-1]),
-                                 self.data.loc[i]['label']))
+                distances.append((KNN.cosine_distance(test, row[:-1]), row['label']))
 
         labels_sorted_by_distance = np.array(sorted(distances))[:, 1]
         predictions = list()
