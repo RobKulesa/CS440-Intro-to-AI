@@ -38,4 +38,4 @@ class KNN:
 
     @staticmethod
     def cosine_distance(p1, p2) -> float:
-        return 1 - (np.dot(p1, p2) / (np.linalg.norm(p1) * np.linalg.norm(p2)))
+        return np.arccos((np.dot(p1, p2) / (np.linalg.norm(p1) * np.linalg.norm(p2))))

@@ -1,0 +1,87 @@
+%! Author = Robert Kulesa, Daniel Liu, Michael Li
+%! Date = 10/5/2021
+
+% Preamble
+\documentclass[11pt]{article}
+
+% Packages
+\usepackage{amsmath}
+
+% Document
+\begin{document}
+    \begin{titlepage}
+        \begin{center}
+            \vspace{1cm}
+
+            \Huge
+            \textbf{Face and Digit Classification}
+
+            \vspace{0.5cm}
+            \LARGE
+            Final Project
+
+            \vspace{1cm}
+
+            \textbf{Michael Li - 192008938}
+
+            \textbf{Daniel Liu - 184007283}
+
+            \textbf{Robert Kulesa - 185009892}
+
+
+            \vfill
+
+
+            \vspace{0.8cm}
+
+            \Large
+            CS440 Fall 2021\\
+            Professor Boularias\\
+            Rutgers University - New Brunswick\\
+            December 14, 2021
+
+        \end{center}
+    \end{titlepage}
+
+    \begin{center}
+        \Large
+        \textbf{Classifier 1 - Perceptron}
+    \end{center}
+    \normalsize
+
+    \begin{center}
+        \Large
+        \textbf{Classifier 2 - Naive Bayes}
+    \end{center}
+    \normalsize
+
+    \begin{center}
+        \Large
+        \textbf{Classifier 3 - K Nearest Neighbor}
+    \end{center}
+    \normalsize
+    The K-Nearest Neighbor (KNN) Classifier works by taking a test sample, calculating its
+    distance to all training samples, and classifying the test sample as whichever label
+    the majority of the $K$ closest samples hold.\\\\
+    \{include section on feature extraction if we all do it differently\}\\\\
+    Many distance functions can be used, and each has their own advantages and disadvantages for
+    different datasets, such as speed and memory requirements.\\\\
+    For the face dataset, this implementation of KNN uses the cosine distance as the distance function.
+    Mathematically, the cosine distance is the cosine of the angle between two vectors in n-dimensional space.
+    The cosine distance of vectors $q$ and $p$ can be calculated as:
+    \[dist\left(q, p\right) = 1-\cos(\theta) = 1-\frac{q \cdot p}{\|q\|\|p\|}\]
+    For the digits dataset, this implementation of KNN uses the euclidean distance as the distance function.
+    Mathematically, the euclidean distance is the length of the line segment that connects two points in n-dimensional space.
+    The euclidean distance of vectors $q$ and $p$ can be calculated as:
+    \[dist\left(q, p\right) = \sqrt{\sum_{i=1}^{n}\left(q_i-p_i\right)^2}\]
+
+    \begin{center}
+        \Large
+        \textbf{Classification Model Comparison}
+    \end{center}
+    \normalsize
+
+
+
+
+\end{document}

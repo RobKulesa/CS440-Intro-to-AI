@@ -55,23 +55,31 @@ def translate_pixels(line: str) -> List[int]:
 def main():
     dset = input('Choose dataset (face, digits): ')
     training_percent = int(input('Enter percent of training data to use (10, 20, etc): '))
+    k_vals_in = input('Enter the k-vals to test, separated by commas (35,20,15,...), or leave blank for 35,21,15,11,5,3,1: ')
+
+    if k_vals_in == '':
+        k_vals_in = [35, 21, 15, 11, 5, 3, 1]
+    else:
+        k_vals_in = [int(i) for i in k_vals_in.split(',')]
+        k_vals_in.sort(reverse=True)
+    k_vals = dict.fromkeys(k_vals_in, 0)
 
     print('Getting data...')
 
     if dset == 'digits':
         width = 28
         height = 28
-        training_data = load_data_file("data/digitdata/trainingimages", width, height)
-        training_labels = load_labels_file("data/digitdata/traininglabels")
-        test_data = load_data_file("data/digitdata/testimages", width, height)
-        test_labels = load_labels_file("data/digitdata/testlabels")
+        training_data = load_data_file("../data/digitdata/trainingimages", width, height)
+        training_labels = load_labels_file("../data/digitdata/traininglabels")
+        test_data = load_data_file("../data/digitdata/testimages", width, height)
+        test_labels = load_labels_file("../data/digitdata/testlabels")
     else:
         width = 60
         height = 70
-        training_data = load_data_file("data/facedata/facedatatrain", width, height)
-        training_labels = load_labels_file("data/facedata/facedatatrainlabels")
-        test_data = load_data_file("data/facedata/facedatatest", width, height)
-        test_labels = load_labels_file("data/facedata/facedatatestlabels")
+        training_data = load_data_file("../data/facedata/facedatatrain", width, height)
+        training_labels = load_labels_file("../data/facedata/facedatatrainlabels")
+        test_data = load_data_file("../data/facedata/facedatatest", width, height)
+        test_labels = load_labels_file("../data/facedata/facedatatestlabels")
 
     df_train = pd.DataFrame(data=training_data)
     df_train.insert(loc=df_train.shape[1], column='label', value=training_labels)
@@ -82,8 +90,6 @@ def main():
 
     print('Training KNN model...')
     my_knn = KNN(df_train_sample, dset=dset)
-
-    k_vals = {35: 0, 21: 0, 15: 0, 11: 0, 5: 0, 3: 0, 1: 0}
 
     print_counter = 0
     print('Testing on %d%% of training data' % training_percent)
@@ -106,7 +112,11 @@ def main():
             print('\t25% complete...')
             print_counter += 1
 
-    print(k_vals)
+    print('Finished!\n\nResults:')
+    print(f'Correct Number of Guesses by k-value: {k_vals}')
+
+    selected_k = max(k_vals, key=k_vals.get)
+    print('Selected k: %d\nCorrect Guesses: %d\nTest Data Size: %d\n%% Correct: %.2f%%' % (selected_k, k_vals.get(selected_k), len(test_labels), float(k_vals.get(selected_k)) / len(test_labels) * 100))
 
 
 if __name__ == '__main__':
