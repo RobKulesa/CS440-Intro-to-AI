@@ -149,7 +149,16 @@
     \normalsize
     \begin{enumerate}
         \item[(a)]
+        \includegraphics[width=\linewidth]{images/bayesnetwork} \\
         \item[(b)]
+        Probability the current transanction is a fraud prior to searching for previous computer related purchases and before verifying if it is a foreign and/or an internet purchase:
+        P(Fraud) = P(Fraud = True| Trav = True) * P(Trav = True) + P(Fraud = True| Trav = False) * P(Trav = False) = 0.01 * 0.05 + 0.004 * 0.95 = 0.0043
+        Probability the current transaction is a fraud given that it is a foreign transaction, not an internet purchase, and card holder purchased computer related purchases in the past week:
+        P(Fraud = True| IP = False, CRP = True, OC = True) = P(IP = False| CRP = True, Fraud = True) * P(CRP = True) + P(IP = False| CRP = False, Fraud = True) * P(CRP = False) = P(IP = False| CRP = True, Fraud = True) * (P(CRP = True| OC = True) * P(OC = True) + P(CRP = True| OC = False) * P(OC = False)) + P(IP = False| CRP = False, Fraud = True) * (P(CRP = False| OC = True) * P(OC = True) + P(CRP = False| OC = False) * P(OC = False)) = 0.99 * (0.1 * 0.75 + 0.01 * 0.25) + 0.89 * (0.9 * 0.75 + 0.99 * 0.25) = 0.89775
+        
+        P(Fraud = True| FP = True) = P(Fraud = True| Trav = True) * P(FP = True| Trav = True, Fraud = True) * P(Trav = True) + P(Fraud = True| Trav = False) * P(FP = True| Trav = False, Fraud = True) * P(Trav = False) = 0.01 * 0.90 * 0.05 + 0.004 * 0.10 * 0.95 = 0.00083
+        
+        P(Fraud = True | IP = False, CRP = True, OC = True, FP = True) = 0.89775 * 0.00083 = 0.000745
     \end{enumerate}
 
 \end{document}
