@@ -1,0 +1,51 @@
+Perceptron Digits :
+
+10% [500 Training, 1000 Testing]
+686 correct out of 1000 (68.6%).
+Training Duration : 11.3970000744 seconds.
+
+
+20% [1000 Training, 1000 Testing]
+740 correct out of 1000 (74.0%).
+Training Duration : 20.8869998455 seconds.
+
+
+30% [1500 Training, 1000 Testing]
+765 correct out of 1000 (76.5%).
+Training Duration : 32.9250001907 seconds.
+
+
+40% [2000 Training, 1000 Testing]
+753 correct out of 1000 (75.3%).
+Training Duration : 43.7720000744 seconds.
+
+
+50% [2500 Training, 1000 Testing]
+789 correct out of 1000 (78.9%).
+Training Duration : 57.0550000668 seconds.
+
+
+60% [3000 Training, 1000 Testing]
+803 correct out of 1000 (80.3%).
+Training Duration : 65.2850000858 seconds.
+
+
+70% [3500 Training, 1000 Testing]
+802 correct out of 1000 (80.2%).
+Training Duration : 82.8740000725 seconds.
+
+
+80% [4000 Training, 1000 Testing]
+771 correct out of 1000 (77.1%).
+Training Duration : 84.4309999943 seconds.
+
+
+90% [4500 Training, 1000 Testing]
+801 correct out of 1000 (80.1%).
+Training Duration : 102.960000038 seconds.
+
+
+100% [5000 Training, 1000 Testing]
+783 correct out of 1000 (78.3%).
+Training Duration : 114.529999971 seconds.
+

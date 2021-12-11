@@ -1,0 +1,51 @@
+Perceptron Faces :
+
+10% [45 Training, 150 Testing]
+91 correct out of 150 (60.7%).
+Training Duration : 1.17199993134 seconds.
+
+
+20% [90 Training, 150 Testing]
+111 correct out of 150 (74.0%).
+Training Duration : 2.3220000267 seconds.
+
+
+30% [135 Training, 150 Testing]
+113 correct out of 150 (75.3%).
+Training Duration : 3.58699989319 seconds.
+
+
+40% [180 Training, 150 Testing]
+124 correct out of 150 (82.7%).
+Training Duration : 4.70399999619 seconds.
+
+
+50% [225 Training, 150 Testing]
+120 correct out of 150 (80.0%).
+Training Duration : 6.07899999619 seconds.
+
+
+60% [270 Training, 150 Testing]
+130 correct out of 150 (86.7%).
+Training Duration : 6.6890001297 seconds.
+
+
+70% [315 Training, 150 Testing]
+122 correct out of 150 (81.3%).
+Training Duration : 8.34700012207 seconds.
+
+
+80% [360 Training, 150 Testing]
+122 correct out of 150 (81.3%).
+Training Duration : 9.04099988937 seconds.
+
+
+90% [405 Training, 150 Testing]
+126 correct out of 150 (84.0%).
+Training Duration : 10.138999939 seconds.
+
+
+100% [451 Training, 150 Testing]
+127 correct out of 150 (84.7%).
+Training Duration : 11.7960000038 seconds.
+
