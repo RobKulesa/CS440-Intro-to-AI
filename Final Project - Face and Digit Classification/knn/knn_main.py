@@ -54,15 +54,16 @@ def translate_pixels(line: str) -> List[int]:
     return new_line
 
 
-def main():
+def main(raw_args=None):
     parser = argparse.ArgumentParser()
     parser.add_argument('dataset', help='choose dataset (face, digits)', type=str)
     parser.add_argument('-p', '--percent', help='choose percent of training data to use', type=float, default=100.0)
     parser.add_argument('-k', '--kvals', help='k-vals to test, separated by commas (ex: \'35,20,15, 1\'), leave blank to use optimal k (digits: 1, faces: 5)', type=str, default='')
     parser.add_argument('-f', '--file', help='append results to file', action='store_true', default=False)
-    parser.add_argument('-s', '--samples', help='# of random test samples to use (and print)', type=int)
+    parser.add_argument('-s', '--samples', help='use a random subset of 4 samples', action='store_true', default=False)
+    parser.add_argument('-v', '--verbose', help='print verbose print strings', action='store_true', default=False)
 
-    args = parser.parse_args()
+    args = parser.parse_args(raw_args)
     dset = args.dataset
     training_percent = args.percent
     k_vals_in = args.kvals
@@ -77,12 +78,14 @@ def main():
         k_vals_in.sort(reverse=True)
     k_vals = dict.fromkeys(k_vals_in, 0)
 
-    print('Getting data...')
+    if args.verbose:
+        print('Getting data...')
+
+    if args.file:
+        filename = 'knn_test_results_' + dset
+        file = open(filename, 'a')
 
     if dset == 'digits':
-        if args.file:
-            filename = 'knn_test_results_digits'
-            file = open(filename, 'a')
         width = 28
         height = 28
         training_data = load_data_file('../data/digitdata/trainingimages', width, height)
@@ -90,9 +93,6 @@ def main():
         test_data = load_data_file('../data/digitdata/testimages', width, height)
         test_labels = load_labels_file('../data/digitdata/testlabels')
     else:
-        if args.file:
-            filename = 'knn_test_results_faces'
-            file = open(filename, 'a')
         width = 60
         height = 70
         training_data = load_data_file('../data/facedata/facedatatrain', width, height)
@@ -109,38 +109,50 @@ def main():
     else:
         df_train_sample = df_train.sample(frac=training_percent / 100)
     if args.samples:
-        df_test_sample = df_test.sample(n=args.samples)
+        df_test_sample = df_test.sample(n=4)
     else:
         df_test_sample = df_test
 
-    print('Training KNN model...')
+    if args.verbose:
+        print('Training KNN model...')
     my_knn = KNN(df_train_sample, dset=dset)
-    print('Done!')
+    if args.verbose:
+        print('Done!')
 
     print_counter = 0
-    print('Testing on %.2f%% of training data' % training_percent)
+    if args.samples:
+        plt.figure(1)
+
+    if args.verbose:
+        print('Testing on %.2f%% of training data' % training_percent)
     start_time = datetime.datetime.now()
+    counter = 0
     for i, test_row in df_test_sample.iterrows():
         predictions = my_knn.knn(test_row[:-1], k_vals)
         for idx, k_val in enumerate(k_vals):
             if predictions[idx] == test_row['label']:
                 k_vals[k_val] += 1
-
-        if i > len(test_labels) * .95 and print_counter == 3:
-            print_counter += 1
-            print('\t95% complete...')
-        elif i > len(test_labels) * .75 and print_counter == 2:
-            print_counter += 1
-            print('\t75% complete...')
-        elif i > len(test_labels) * .5 and print_counter == 1:
-            print_counter += 1
-            print('\t50% complete...')
-        elif i > len(test_labels) * .25 and print_counter == 0:
-            print('\t25% complete...')
-            print_counter += 1
+        if args.samples:
+            plt.subplot(2, 2, counter + 1, title=('Guess: ' + str(predictions[-1]) + ' Actual: ' + str(test_row['label'])))
+            plt.imshow(np.asarray(test_row[:-1]).reshape(height, width), cmap="gray")
+        else:
+            if counter > df_test_sample.shape[0] * .95 and print_counter == 3:
+                print('\t95% complete...')
+                print_counter += 1
+            elif counter > df_test_sample.shape[0] * .75 and print_counter == 2:
+                print('\t75% complete...')
+                print_counter += 1
+            elif counter > df_test_sample.shape[0] * .5 and print_counter == 1:
+                print('\t50% complete...')
+                print_counter += 1
+            elif counter > df_test_sample.shape[0] * .25 and print_counter == 0:
+                print('\t25% complete...')
+                print_counter += 1
+        counter += 1
     testing_time = (datetime.datetime.now() - start_time).total_seconds()
     selected_k = max(k_vals, key=k_vals.get)
-    print('Done!')
+    if args.verbose:
+        print('Done!')
     if args.file:
         print('%.1f%% [%d training, %d testing]' % (training_percent, df_train_sample.shape[0], df_test_sample.shape[0]), file=file)
         if len(k_vals) > 1:
@@ -158,6 +170,10 @@ def main():
             print('Chosen k-value: %d' % selected_k)
         print('%d correct out of %d (%.2f%%).' % (k_vals.get(selected_k), df_test_sample.shape[0], float(k_vals.get(selected_k)) / df_test_sample.shape[0] * 100))
         print('Testing duration : %.2f seconds\nTesting Time per Test Sample: %.2f seconds' % (testing_time, testing_time / df_test_sample.shape[0]))
+
+    if args.samples:
+        plt.show()
+    return float(k_vals.get(selected_k)) / df_test_sample.shape[0] * 100
 
 
 if __name__ == '__main__':

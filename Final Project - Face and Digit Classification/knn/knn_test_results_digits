@@ -1,8 +1,167 @@
-0.5% [25 training, 1000 testing]
-Correct Guesses by k-value: {35: 100, 25: 100, 10: 205}
-Chosen k-value: 10
-205 correct out of 1000 (20.50%).
-Testing duration : 8.92 seconds
-Testing Time per Test Sample: 0.01 seconds
+KNN Digits :
+
+
+
+
+10.0% [500 training, 1000 testing]
+805 correct out of 1000 (80.50%).
+Testing duration : 72.08 seconds
+Testing Time per Test Sample: 0.07 seconds
+
+
+10.0% [500 training, 1000 testing]
+801 correct out of 1000 (80.10%).
+Testing duration : 72.08 seconds
+Testing Time per Test Sample: 0.07 seconds
+
+
+10.0% [500 training, 1000 testing]
+768 correct out of 1000 (76.80%).
+Testing duration : 71.83 seconds
+Testing Time per Test Sample: 0.07 seconds
+
+
+10.0% [500 training, 1000 testing]
+800 correct out of 1000 (80.00%).
+Testing duration : 71.94 seconds
+Testing Time per Test Sample: 0.07 seconds
+
+
+10.0% [500 training, 1000 testing]
+778 correct out of 1000 (77.80%).
+Testing duration : 71.81 seconds
+Testing Time per Test Sample: 0.07 seconds
+
+
+20.0% [1000 training, 1000 testing]
+840 correct out of 1000 (84.00%).
+Testing duration : 143.85 seconds
+Testing Time per Test Sample: 0.14 seconds
+
+
+20.0% [1000 training, 1000 testing]
+839 correct out of 1000 (83.90%).
+Testing duration : 143.64 seconds
+Testing Time per Test Sample: 0.14 seconds
+
+
+20.0% [1000 training, 1000 testing]
+832 correct out of 1000 (83.20%).
+Testing duration : 143.67 seconds
+Testing Time per Test Sample: 0.14 seconds
+
+
+20.0% [1000 training, 1000 testing]
+838 correct out of 1000 (83.80%).
+Testing duration : 144.34 seconds
+Testing Time per Test Sample: 0.14 seconds
+
+
+20.0% [1000 training, 1000 testing]
+841 correct out of 1000 (84.10%).
+Testing duration : 144.20 seconds
+Testing Time per Test Sample: 0.14 seconds
+
+
+30.0% [1500 training, 1000 testing]
+858 correct out of 1000 (85.80%).
+Testing duration : 216.63 seconds
+Testing Time per Test Sample: 0.22 seconds
+
+
+30.0% [1500 training, 1000 testing]
+860 correct out of 1000 (86.00%).
+Testing duration : 216.51 seconds
+Testing Time per Test Sample: 0.22 seconds
+
+
+30.0% [1500 training, 1000 testing]
+846 correct out of 1000 (84.60%).
+Testing duration : 217.76 seconds
+Testing Time per Test Sample: 0.22 seconds
+
+
+30.0% [1500 training, 1000 testing]
+857 correct out of 1000 (85.70%).
+Testing duration : 216.23 seconds
+Testing Time per Test Sample: 0.22 seconds
+
+
+30.0% [1500 training, 1000 testing]
+847 correct out of 1000 (84.70%).
+Testing duration : 217.20 seconds
+Testing Time per Test Sample: 0.22 seconds
+
+
+40.0% [2000 training, 1000 testing]
+877 correct out of 1000 (87.70%).
+Testing duration : 291.47 seconds
+Testing Time per Test Sample: 0.29 seconds
+
+
+40.0% [2000 training, 1000 testing]
+876 correct out of 1000 (87.60%).
+Testing duration : 291.11 seconds
+Testing Time per Test Sample: 0.29 seconds
+
+
+40.0% [2000 training, 1000 testing]
+865 correct out of 1000 (86.50%).
+Testing duration : 290.12 seconds
+Testing Time per Test Sample: 0.29 seconds
+
+
+40.0% [2000 training, 1000 testing]
+876 correct out of 1000 (87.60%).
+Testing duration : 288.81 seconds
+Testing Time per Test Sample: 0.29 seconds
+
+
+40.0% [2000 training, 1000 testing]
+872 correct out of 1000 (87.20%).
+Testing duration : 291.54 seconds
+Testing Time per Test Sample: 0.29 seconds
+
+
+50.0% [2500 training, 1000 testing]
+880 correct out of 1000 (88.00%).
+Testing duration : 361.72 seconds
+Testing Time per Test Sample: 0.36 seconds
+
+
+50.0% [2500 training, 1000 testing]
+885 correct out of 1000 (88.50%).
+Testing duration : 362.73 seconds
+Testing Time per Test Sample: 0.36 seconds
+
+
+50.0% [2500 training, 1000 testing]
+885 correct out of 1000 (88.50%).
+Testing duration : 366.47 seconds
+Testing Time per Test Sample: 0.37 seconds
+
+
+50.0% [2500 training, 1000 testing]
+881 correct out of 1000 (88.10%).
+Testing duration : 364.65 seconds
+Testing Time per Test Sample: 0.36 seconds
+
+
+50.0% [2500 training, 1000 testing]
+879 correct out of 1000 (87.90%).
+Testing duration : 363.02 seconds
+Testing Time per Test Sample: 0.36 seconds
+
+
+60.0% [3000 training, 1000 testing]
+885 correct out of 1000 (88.50%).
+Testing duration : 434.09 seconds
+Testing Time per Test Sample: 0.43 seconds
+
+
+60.0% [3000 training, 1000 testing]
+890 correct out of 1000 (89.00%).
+Testing duration : 434.01 seconds
+Testing Time per Test Sample: 0.43 seconds
 
 

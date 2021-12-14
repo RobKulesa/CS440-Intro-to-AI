@@ -1,12 +1,313 @@
+KNN Faces :
+
 10.0% [45 training, 150 testing]
-119 correct out of 150 (79.33%).
-Testing duration : 1.67 seconds
+117 correct out of 150 (78.00%).
+Testing duration : 0.44 seconds
+Testing Time per Test Sample: 0.00 seconds
+
+
+10.0% [45 training, 150 testing]
+120 correct out of 150 (80.00%).
+Testing duration : 0.43 seconds
+Testing Time per Test Sample: 0.00 seconds
+
+
+10.0% [45 training, 150 testing]
+127 correct out of 150 (84.67%).
+Testing duration : 0.44 seconds
+Testing Time per Test Sample: 0.00 seconds
+
+
+10.0% [45 training, 150 testing]
+125 correct out of 150 (83.33%).
+Testing duration : 0.43 seconds
+Testing Time per Test Sample: 0.00 seconds
+
+
+10.0% [45 training, 150 testing]
+117 correct out of 150 (78.00%).
+Testing duration : 0.43 seconds
+Testing Time per Test Sample: 0.00 seconds
+
+
+20.0% [90 training, 150 testing]
+123 correct out of 150 (82.00%).
+Testing duration : 0.85 seconds
 Testing Time per Test Sample: 0.01 seconds
+
+
+20.0% [90 training, 150 testing]
+122 correct out of 150 (81.33%).
+Testing duration : 0.85 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+20.0% [90 training, 150 testing]
+126 correct out of 150 (84.00%).
+Testing duration : 0.84 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+20.0% [90 training, 150 testing]
+123 correct out of 150 (82.00%).
+Testing duration : 0.84 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+20.0% [90 training, 150 testing]
+122 correct out of 150 (81.33%).
+Testing duration : 0.84 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+30.0% [135 training, 150 testing]
+132 correct out of 150 (88.00%).
+Testing duration : 1.28 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+30.0% [135 training, 150 testing]
+134 correct out of 150 (89.33%).
+Testing duration : 1.26 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+30.0% [135 training, 150 testing]
+135 correct out of 150 (90.00%).
+Testing duration : 1.27 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+30.0% [135 training, 150 testing]
+130 correct out of 150 (86.67%).
+Testing duration : 1.27 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+30.0% [135 training, 150 testing]
+132 correct out of 150 (88.00%).
+Testing duration : 1.27 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+40.0% [180 training, 150 testing]
+126 correct out of 150 (84.00%).
+Testing duration : 1.68 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+40.0% [180 training, 150 testing]
+137 correct out of 150 (91.33%).
+Testing duration : 1.69 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+40.0% [180 training, 150 testing]
+131 correct out of 150 (87.33%).
+Testing duration : 1.69 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+40.0% [180 training, 150 testing]
+134 correct out of 150 (89.33%).
+Testing duration : 1.69 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+40.0% [180 training, 150 testing]
+133 correct out of 150 (88.67%).
+Testing duration : 1.69 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+50.0% [226 training, 150 testing]
+137 correct out of 150 (91.33%).
+Testing duration : 2.13 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+50.0% [226 training, 150 testing]
+140 correct out of 150 (93.33%).
+Testing duration : 2.13 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+50.0% [226 training, 150 testing]
+138 correct out of 150 (92.00%).
+Testing duration : 2.13 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+50.0% [226 training, 150 testing]
+134 correct out of 150 (89.33%).
+Testing duration : 2.13 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+50.0% [226 training, 150 testing]
+139 correct out of 150 (92.67%).
+Testing duration : 2.13 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+60.0% [271 training, 150 testing]
+137 correct out of 150 (91.33%).
+Testing duration : 2.56 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+60.0% [271 training, 150 testing]
+136 correct out of 150 (90.67%).
+Testing duration : 2.56 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+60.0% [271 training, 150 testing]
+136 correct out of 150 (90.67%).
+Testing duration : 2.55 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+60.0% [271 training, 150 testing]
+136 correct out of 150 (90.67%).
+Testing duration : 2.56 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+60.0% [271 training, 150 testing]
+138 correct out of 150 (92.00%).
+Testing duration : 2.56 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+70.0% [316 training, 150 testing]
+141 correct out of 150 (94.00%).
+Testing duration : 2.98 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+70.0% [316 training, 150 testing]
+137 correct out of 150 (91.33%).
+Testing duration : 2.98 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+70.0% [316 training, 150 testing]
+141 correct out of 150 (94.00%).
+Testing duration : 2.98 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+70.0% [316 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 3.01 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+70.0% [316 training, 150 testing]
+139 correct out of 150 (92.67%).
+Testing duration : 2.99 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+80.0% [361 training, 150 testing]
+138 correct out of 150 (92.00%).
+Testing duration : 3.46 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+80.0% [361 training, 150 testing]
+141 correct out of 150 (94.00%).
+Testing duration : 3.47 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+80.0% [361 training, 150 testing]
+140 correct out of 150 (93.33%).
+Testing duration : 3.47 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+80.0% [361 training, 150 testing]
+139 correct out of 150 (92.67%).
+Testing duration : 3.47 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+80.0% [361 training, 150 testing]
+141 correct out of 150 (94.00%).
+Testing duration : 3.47 seconds
+Testing Time per Test Sample: 0.02 seconds
+
+
+90.0% [406 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 3.90 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+90.0% [406 training, 150 testing]
+143 correct out of 150 (95.33%).
+Testing duration : 3.91 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+90.0% [406 training, 150 testing]
+140 correct out of 150 (93.33%).
+Testing duration : 3.91 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+90.0% [406 training, 150 testing]
+140 correct out of 150 (93.33%).
+Testing duration : 3.92 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+90.0% [406 training, 150 testing]
+141 correct out of 150 (94.00%).
+Testing duration : 3.91 seconds
+Testing Time per Test Sample: 0.03 seconds
 
 
 100.0% [451 training, 150 testing]
 142 correct out of 150 (94.67%).
-Testing duration : 13.55 seconds
-Testing Time per Test Sample: 0.09 seconds
+Testing duration : 4.46 seconds
+Testing Time per Test Sample: 0.03 seconds
 
 
+100.0% [451 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 4.45 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+100.0% [451 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 4.45 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+100.0% [451 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 4.45 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+100.0% [451 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 4.45 seconds
+Testing Time per Test Sample: 0.03 seconds
+
+
+Mean and Standard Deviation Info:
+Training Data Percentage: 10.00%, mean(accuracy): 80.80%, std(accuracy): 2.75
+Training Data Percentage: 20.00%, mean(accuracy): 82.13%, std(accuracy): 0.98
+Training Data Percentage: 30.00%, mean(accuracy): 88.40%, std(accuracy): 1.16
+Training Data Percentage: 40.00%, mean(accuracy): 88.13%, std(accuracy): 2.44
+Training Data Percentage: 50.00%, mean(accuracy): 91.73%, std(accuracy): 1.37
+Training Data Percentage: 60.00%, mean(accuracy): 91.07%, std(accuracy): 0.53
+Training Data Percentage: 70.00%, mean(accuracy): 93.33%, std(accuracy): 1.19
+Training Data Percentage: 80.00%, mean(accuracy): 93.20%, std(accuracy): 0.78
+Training Data Percentage: 90.00%, mean(accuracy): 94.13%, std(accuracy): 0.78
+Training Data Percentage: 100.00%, mean(accuracy): 94.67%, std(accuracy): 0.00
