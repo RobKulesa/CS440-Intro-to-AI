@@ -1,0 +1,8 @@
+0.5% [25 training, 1000 testing]
+Correct Guesses by k-value: {35: 100, 25: 100, 10: 205}
+Chosen k-value: 10
+205 correct out of 1000 (20.50%).
+Testing duration : 8.92 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+

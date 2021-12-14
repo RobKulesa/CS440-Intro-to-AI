@@ -1,0 +1,12 @@
+10.0% [45 training, 150 testing]
+119 correct out of 150 (79.33%).
+Testing duration : 1.67 seconds
+Testing Time per Test Sample: 0.01 seconds
+
+
+100.0% [451 training, 150 testing]
+142 correct out of 150 (94.67%).
+Testing duration : 13.55 seconds
+Testing Time per Test Sample: 0.09 seconds
+
+
