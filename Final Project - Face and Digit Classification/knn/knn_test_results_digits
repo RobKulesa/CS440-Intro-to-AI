@@ -1,8 +1,5 @@
 KNN Digits :
 
-
-
-
 10.0% [500 training, 1000 testing]
 805 correct out of 1000 (80.50%).
 Testing duration : 72.08 seconds
@@ -165,3 +162,152 @@ Testing duration : 434.01 seconds
 Testing Time per Test Sample: 0.43 seconds
 
 
+60.0% [3000 training, 1000 testing]
+886 correct out of 1000 (88.60%).
+Testing duration : 434.25 seconds
+Testing Time per Test Sample: 0.43 seconds
+
+
+60.0% [3000 training, 1000 testing]
+900 correct out of 1000 (90.00%).
+Testing duration : 433.38 seconds
+Testing Time per Test Sample: 0.43 seconds
+
+
+60.0% [3000 training, 1000 testing]
+900 correct out of 1000 (90.00%).
+Testing duration : 433.95 seconds
+Testing Time per Test Sample: 0.43 seconds
+
+
+70.0% [3500 training, 1000 testing]
+901 correct out of 1000 (90.10%).
+Testing duration : 510.51 seconds
+Testing Time per Test Sample: 0.51 seconds
+
+
+70.0% [3500 training, 1000 testing]
+895 correct out of 1000 (89.50%).
+Testing duration : 514.82 seconds
+Testing Time per Test Sample: 0.51 seconds
+
+
+70.0% [3500 training, 1000 testing]
+897 correct out of 1000 (89.70%).
+Testing duration : 507.05 seconds
+Testing Time per Test Sample: 0.51 seconds
+
+
+70.0% [3500 training, 1000 testing]
+893 correct out of 1000 (89.30%).
+Testing duration : 510.84 seconds
+Testing Time per Test Sample: 0.51 seconds
+
+
+70.0% [3500 training, 1000 testing]
+889 correct out of 1000 (88.90%).
+Testing duration : 510.11 seconds
+Testing Time per Test Sample: 0.51 seconds
+
+
+80.0% [4000 training, 1000 testing]
+904 correct out of 1000 (90.40%).
+Testing duration : 579.07 seconds
+Testing Time per Test Sample: 0.58 seconds
+
+
+80.0% [4000 training, 1000 testing]
+900 correct out of 1000 (90.00%).
+Testing duration : 581.45 seconds
+Testing Time per Test Sample: 0.58 seconds
+
+
+80.0% [4000 training, 1000 testing]
+894 correct out of 1000 (89.40%).
+Testing duration : 577.09 seconds
+Testing Time per Test Sample: 0.58 seconds
+
+
+80.0% [4000 training, 1000 testing]
+900 correct out of 1000 (90.00%).
+Testing duration : 578.81 seconds
+Testing Time per Test Sample: 0.58 seconds
+
+
+80.0% [4000 training, 1000 testing]
+909 correct out of 1000 (90.90%).
+Testing duration : 579.16 seconds
+Testing Time per Test Sample: 0.58 seconds
+
+
+90.0% [4500 training, 1000 testing]
+899 correct out of 1000 (89.90%).
+Testing duration : 651.40 seconds
+Testing Time per Test Sample: 0.65 seconds
+
+
+90.0% [4500 training, 1000 testing]
+903 correct out of 1000 (90.30%).
+Testing duration : 653.64 seconds
+Testing Time per Test Sample: 0.65 seconds
+
+
+90.0% [4500 training, 1000 testing]
+902 correct out of 1000 (90.20%).
+Testing duration : 649.58 seconds
+Testing Time per Test Sample: 0.65 seconds
+
+
+90.0% [4500 training, 1000 testing]
+906 correct out of 1000 (90.60%).
+Testing duration : 649.67 seconds
+Testing Time per Test Sample: 0.65 seconds
+
+
+90.0% [4500 training, 1000 testing]
+905 correct out of 1000 (90.50%).
+Testing duration : 650.74 seconds
+Testing Time per Test Sample: 0.65 seconds
+
+
+100.0% [5000 training, 1000 testing]
+906 correct out of 1000 (90.60%).
+Testing duration : 721.81 seconds
+Testing Time per Test Sample: 0.72 seconds
+
+
+100.0% [5000 training, 1000 testing]
+906 correct out of 1000 (90.60%).
+Testing duration : 722.14 seconds
+Testing Time per Test Sample: 0.72 seconds
+
+
+100.0% [5000 training, 1000 testing]
+906 correct out of 1000 (90.60%).
+Testing duration : 721.54 seconds
+Testing Time per Test Sample: 0.72 seconds
+
+
+100.0% [5000 training, 1000 testing]
+906 correct out of 1000 (90.60%).
+Testing duration : 722.04 seconds
+Testing Time per Test Sample: 0.72 seconds
+
+
+100.0% [5000 training, 1000 testing]
+906 correct out of 1000 (90.60%).
+Testing duration : 722.06 seconds
+Testing Time per Test Sample: 0.72 seconds
+
+
+Mean and Standard Deviation Info:
+Training Data Percentage: 10.00%, mean(accuracy): 79.04%, std(accuracy): 1.47
+Training Data Percentage: 20.00%, mean(accuracy): 83.80%, std(accuracy): 0.32
+Training Data Percentage: 30.00%, mean(accuracy): 85.36%, std(accuracy): 0.59
+Training Data Percentage: 40.00%, mean(accuracy): 87.32%, std(accuracy): 0.44
+Training Data Percentage: 50.00%, mean(accuracy): 88.20%, std(accuracy): 0.25
+Training Data Percentage: 60.00%, mean(accuracy): 89.22%, std(accuracy): 0.66
+Training Data Percentage: 70.00%, mean(accuracy): 89.50%, std(accuracy): 0.40
+Training Data Percentage: 80.00%, mean(accuracy): 90.14%, std(accuracy): 0.50
+Training Data Percentage: 90.00%, mean(accuracy): 90.30%, std(accuracy): 0.24
+Training Data Percentage: 100.00%, mean(accuracy): 90.60%, std(accuracy): 0.00
