@@ -91,6 +91,34 @@
     
     The Naive Bayes classifier was able to achieve fast classification speeds by precalculating all possible likelihoods for each feature (pixel) in a given sample and class. Thus, when the predict() method is called, the model only needs to look up the likelihoods of each feature in a sample from a pregenerated table of likelihoods. The Naive Bayes model was able to classify the face test set in 0.576 seconds (150 samples) with an accuracy of 0.893 and the digit test set in 3.699 seconds (1000 samples) with an accuracy of 0.769.
 
-
+    Testing accuracy of the classifier when trained on different percentages of training data was evaluated. The model randomly sampled a percentage of the training data 5 times at each stage and the means and standard deviations are displayed below. Testing accuracy increased with the amount of training data provided, with the greatest increase being observed when increasing from 10\% of the training data to 20\% of the training data.
+    
+    \begin{center}
+    \begin{tabular}{||c c c||} 
+     \hline
+     \% Training Data & Mean Accuracy & Standard Deviation \\ [0.5ex] 
+     \hline\hline
+     10 & 0.487 & 0.001 \\ 
+     \hline
+     20 & 0.813 & 0.053 \\ 
+     \hline
+     30 & 0.8 & 0.067 \\ 
+     \hline
+     40 & 0.84 & 0.027 \\ 
+     \hline
+     50 & 0.863 & 0.01 \\ 
+     \hline
+     60 & 0.847 & 0.007 \\ 
+     \hline
+     70 & 0.88 & 0.007 \\ 
+     \hline
+     80 & 0.887 & 0.007 \\ 
+     \hline
+     90 & 0.88 & 0.007 \\ 
+     \hline
+     100 & 0.893 & 0.0 \\ 
+     \hline
+    \end{tabular}
+    \end{center}
 
 \end{document}
