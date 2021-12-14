@@ -48,6 +48,12 @@
         \textbf{Classifier 1 - Perceptron}
     \end{center}
     \normalsize
+    The Perceptron Classifier works by using a binary classifier, in which the training data is read and its features compared to determine if the input matches the attributes of its corresponding class. For every training image with feature vector f, the classifier determines the score for every class y utilizing the following:
+    \[score(f,y) = \sum_{k}f_k w_k^y\]
+    The max score y' for f is then determined to identify the closest matching class for f. If it is found that the best guess y' does not match the actual score y, then we adjust our weights as such:
+    \[w^y += f\]
+    \[w^y' -= f\]
+    The perceptron classifier in essence classifies each image in the class with the maximum score calculated by multiplying the feature vector f by classes' weight vectors w.
 
     \begin{center}
         \Large
