@@ -48,19 +48,21 @@
         \textbf{Classifier 1 - Perceptron}
     \end{center}
     \normalsize
-    The Perceptron Classifier works by using a binary classifier, in which the training data is read and its features compared to determine if the input matches the attributes of its corresponding class. For every training image with feature vector f, the classifier determines the score for every class y utilizing the following:
-    \[score(f,y) = \sum_{k}f_k w_k^y\]
-    The max score y' for f is then determined to identify the closest matching class for f. If it is found that the best guess y' does not match the actual score y, then we adjust our weights as such:
-    \[w^y += f\]
-    \[w^y' -= f\]
-    The perceptron classifier in essence classifies each image in the class with the maximum score calculated by multiplying the feature vector f by classes' weight vectors w.
 
     \begin{center}
         \Large
         \textbf{Classifier 2 - Naive Bayes}
     \end{center}
     \normalsize
-
+    The Naive Bayes classifier is based off of the Bayes Theoreum, which is defined as:\\
+    
+    \[P(y|X) = \frac{P(X|y)*P(y)}{P(X)}\]
+    
+    It functions by calculating the posterior probability $P(y|X)$ of each possible class based off of frequency distributions observed in the training set and choosing the class with the highest posterior probability as its prediction. This specific implementation of Naive Bayes used each pixel in the training images as an input, and calculated the likelihood of a each pixel being "on" or "off" given a class label (i.e. face, not face). Typically the posterior probability is calculated by multiplying the prior probability of a class  with the likelihood of each feature, but since the number of features was so high the log-sum of likelihoods and prior probabilities was used instead to avoid arithmetic underflow when calculating posterior probabilities. Additionally, calculating the denominator $P(X)$ is a redundant calculation since it does not change the relative difference between likelihood scores. As a result, the posterior probability equation used by this implementation of Naive Bayes is the following:\\ 
+    \[P(y|X) = log(P(y)) + log(P(X|y))\]
+    
+    A smoothing factor of +1 was also applied to each likelihood calculation to avoid a zero probability prediction if a given feature distribution is not represented well in the training data.
+    
     \begin{center}
         \Large
         \textbf{Classifier 3 - K Nearest Neighbor}
@@ -86,7 +88,8 @@
         \textbf{Classification Model Comparison}
     \end{center}
     \normalsize
-
+    
+    The Naive Bayes classifier was able to achieve fast classification speeds by precalculating all possible likelihoods for each feature (pixel) in a given sample and class. Thus, when the predict() method is called, the model only needs to look up the likelihoods of each feature in a sample from a pregenerated table of likelihoods. The Naive Bayes model was able to classify the face test set in 0.576 seconds (150 samples) with an accuracy of 0.893 and the digit test set in 3.699 seconds (1000 samples) with an accuracy of 0.769.
 
 
 
