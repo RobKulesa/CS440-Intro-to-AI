@@ -78,7 +78,7 @@ def main():
     DIGIT_TRAIN_X_PATH = '../data/digitdata/trainingimages'
     DIGIT_TRAIN_Y_PATH = '../data/digitdata/traininglabels'
     DIGIT_TEST_X_PATH = '../data/digitdata/testimages'
-    DIGIT_TEST_Y_PATH = '../data/digitdata/testslabels'
+    DIGIT_TEST_Y_PATH = '../data/digitdata/testlabels'
     
     FACE_TRAIN_X_PATH = '../data/facedata/facedatatrain'
     FACE_TRAIN_Y_PATH = '../data/facedata/facedatatrainlabels'
