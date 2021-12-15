@@ -49,7 +49,41 @@
         \textbf{Classifier 1 - Perceptron}
     \end{center}
     \normalsize
-
+        The Perceptron Classifier works by using a binary classifier, in which the training data is read and its features compared to determine if the input matches the attributes of its corresponding class. For every training image with feature vector f, the classifier determines the score for every class y utilizing the following:
+    \[score(f,y) = \sum_{k}f_k w_k^y\]
+    The max score y' for f is then determined to identify the closest matching class for f. If it is found that the best guess y' does not match the actual score y, then we adjust our weights as such:
+    \[w^y += f\]
+    \[w^y' -= f\]
+    The perceptron classifier in essence classifies each image in the class with the maximum score calculated by multiplying the feature vector f by classes' weight vectors w.\\
+    \\
+    The accuracy of the classifier was tested by calculating the standard deviation and mean of accuracy through 5 random samples of training data per percentage level. As seen from the table following, the accuracy of the classifier generally increased the more training data that were introduced. Likewise, the standard deviation of the accuracy decreased the more data presented. \\
+    \begin{center}
+    \begin{tabular}{||c c c||} 
+     \hline
+     \% Training Data & Mean Accuracy & Standard Deviation \\ [0.5ex] 
+     \hline\hline
+     10 & 0.607 & 4.573 \\ 
+     \hline
+     20 & 0.740 & 4.000 \\ 
+     \hline
+     30 & 0.753 & 1.007 \\ 
+     \hline
+     40 & 0.827 & 1.412 \\ 
+     \hline
+     50 & 0.800 & 0.000 \\ 
+     \hline
+     60 & 0.867 & 0.000 \\ 
+     \hline
+     70 & 0.813 & 0.000 \\ 
+     \hline
+     80 & 0.813 & 0.000 \\ 
+     \hline
+     90 & 0.840 & 0.000 \\ 
+     \hline
+     100 & 0.847 & 0.000 \\ 
+     \hline
+    \end{tabular}
+    \end{center}
     \begin{center}
         \Large
         \textbf{Classifier 2 - Naive Bayes}
