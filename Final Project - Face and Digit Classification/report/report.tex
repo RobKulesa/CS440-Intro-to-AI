@@ -103,7 +103,7 @@
     
     A smoothing factor of +1 was also applied to each likelihood calculation to avoid a zero probability prediction if a given feature distribution is not represented well in the training data.\\\\
     \large
-    \textbf{GNB Results - 5 iterations}
+    \textbf{NB Results - 5 iterations}
     \normalsize
 
     The Naive Bayes classifier was able to achieve fast classification speeds by precalculating all possible likelihoods for each feature (pixel) in a given sample and class. Thus, when the predict() method is called, the model only needs to look up the likelihoods of each feature in a sample from a pregenerated table of likelihoods. The Naive Bayes model was able to classify the face test set in 0.576 seconds (150 samples) with an accuracy of 0.893 and the digit test set in 3.699 seconds (1000 samples) with an accuracy of 0.769.
