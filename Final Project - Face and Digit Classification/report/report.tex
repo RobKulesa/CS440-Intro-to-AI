@@ -62,29 +62,30 @@
 
     The accuracy of the classifier was tested by calculating the standard deviation and mean of accuracy through 5 random samples of training data per percentage level. As seen from the table following, the accuracy of the classifier generally increased the more training data that were introduced. Likewise, the standard deviation of the accuracy decreased the more data presented. \\
     \begin{center}
-    \begin{tabular}{||c c c||} 
+   
+    \begin{tabular}{||c|c c|c c||} 
      \hline
-     \% Training Data & Mean Accuracy & Standard Deviation \\ [0.5ex] 
+     \% Training Data & mean(acc) - Faces & std(acc) - Faces & mean(acc) - Digits & std(acc) - Digits \\ 
      \hline\hline
-     10 & 0.607 & 4.573 \\ 
+     10 & 0.607 & 4.573 & 0.686 & 36.274\\ 
      \hline
-     20 & 0.740 & 4.000 \\ 
+     20 & 0.740 & 4.000 & 0.740 & 15.843\\ 
      \hline
-     30 & 0.753 & 1.007 \\ 
+     30 & 0.753 & 1.007 & 0.765 & 18.833\\ 
      \hline
-     40 & 0.827 & 1.412 \\ 
+     40 & 0.827 & 1.412 & 0.753 & 11.771\\ 
      \hline
-     50 & 0.800 & 0.000 \\ 
+     50 & 0.800 & 0.000 & 0.789 & 6.915\\ 
      \hline
-     60 & 0.867 & 0.000 \\ 
+     60 & 0.867 & 0.000 & 0.803 & 5.229\\ 
      \hline
-     70 & 0.813 & 0.000 \\ 
+     70 & 0.813 & 0.000 & 0.802 & 5.744\\ 
      \hline
-     80 & 0.813 & 0.000 \\ 
+     80 & 0.813 & 0.000 & 0.771 & 5.599\\ 
      \hline
-     90 & 0.840 & 0.000 \\ 
+     90 & 0.840 & 0.000 & 0.801 & 5.784\\ 
      \hline
-     100 & 0.847 & 0.000 \\ 
+     100 & 0.847 & 0.000 & 0.783 & 3.211\\ 
      \hline
     \end{tabular}
     \end{center}
