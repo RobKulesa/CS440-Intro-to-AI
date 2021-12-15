@@ -6,6 +6,7 @@
 
 % Packages
 \usepackage{amsmath}
+\usepackage{textcomp}
 
 % Document
 \begin{document}
@@ -68,10 +69,10 @@
         \textbf{Classifier 3 - K Nearest Neighbor}
     \end{center}
     \normalsize
-    The K-Nearest Neighbor (KNN) Classifier works by taking a test sample, calculating its
-    distance to all training samples, and classifying the test sample as whichever label
-    the majority of the $K$ closest samples hold.\\\\
-    \{include section on feature extraction if we all do it differently\}\\\\
+    The K-Nearest Neighbor (KNN) Classifier works by using distance functions to compute
+    the distance of a test sample to all training samples, and classifying the test sample
+    as whichever class the majority of the $K$ nearest samples.
+    In this instance, each $m \times n$ image sample is flattened into a vector with $m*n$ dimensions.\\\\
     Many distance functions can be used, and each has their own advantages and disadvantages for
     different datasets, such as speed and memory requirements.\\\\
     For the face dataset, this implementation of KNN uses the cosine distance as the distance function.
@@ -82,7 +83,72 @@
     Mathematically, the euclidean distance is the length of the line segment that connects two points in n-dimensional space.
     The euclidean distance of vectors $q$ and $p$ can be calculated as:
     \[dist\left(q, p\right) = \sqrt{\sum_{i=1}^{n}\left(q_i-p_i\right)^2}\]
-
+    The training phase of KNN only involves loading the data into the model, and all the distance computation
+    is done during the testing phase.
+    Therefore, the training phase has a runtime of $\mathcal{O}(1)$.
+    The number of computations done in for each test sample scales linearly with the number
+    of training samples $n$, giving the testing phase of $m$ test samples a runtime of $\mathcal{O}(mn)$.\\\\
+    \large
+    \textbf{KNN Results - 5 iterations}
+    \small
+    \begin{center}
+    \begin{tabular}{||c|c c|c c||}
+     \hline
+     \% Training Data & mean(acc) - Faces & std(acc) - Faces & mean(acc) - Digits & std(acc) - Digits \\ [0.5ex]
+     \hline\hline
+     10 & 0.8080 & 0.00275 & 0.7904 & 0.00147 \\
+     \hline
+     20 & 0.8213 & 0.00098 & 0.8380 & 0.00032 \\
+     \hline
+     30 & 0.8840 & 0.00116 & 0.8536 & 0.00059 \\
+     \hline
+     40 & 0.8813 & 0.00244 & 0.8732 & 0.00044 \\
+     \hline
+     50 & 0.9173 & 0.00137 & 0.8820 & 0.00025 \\
+     \hline
+     60 & 0.9107 & 0.00053 & 0.8922 & 0.00066 \\
+     \hline
+     70 & 0.9333 & 0.00119 & 0.8950 & 0.00040 \\
+     \hline
+     80 & 0.9320 & 0.00078 & 0.9014 & 0.00050 \\
+     \hline
+     90 & 0.9413 & 0.00078 & 0.9030 & 0.00024 \\
+     \hline
+     100 & 0.9467 & 0.0 & 0.9060 & 0.0 \\
+     \hline
+    \end{tabular}
+    \begin{tabular}{||c|c|c||}
+     \hline
+     \% Training Data & mean(runtime) - Faces (seconds) & mean(runtime) - Digits (seconds) \\ [0.5ex]
+     \hline\hline
+     10 & 0.43 & 71.95 \\
+     \hline
+     20 & 0.84 & 143.94 \\
+     \hline
+     30 & 1.27 & 216.87 \\
+     \hline
+     40 & 1.69 & 290.61 \\
+     \hline
+     50 & 2.13 & 363.72 \\
+     \hline
+     60 & 2.56 & 433.94 \\
+     \hline
+     70 & 2.99 & 510.67 \\
+     \hline
+     80 & 3.47 & 579.12 \\
+     \hline
+     90 & 3.91 & 651.01 \\
+     \hline
+     100 & 4.45 & 721.92 \\
+     \hline
+    \end{tabular}
+    \end{center}
+    \normalsize
+    Overall, KNN achieved good accuracy (\textasciitilde 80\%) for both datasets when using even just 10\% of the training data.
+    As stated before, the runtime of the test phase of KNN appears to scale linearly with the number
+    of training samples used.
+    However, the runtime for the digits dataset is extremely high in comparison to the runtime for the faces dataset.
+    Future versions of this model may improve upon dimensionality reduction to lower runtime while maintaining a high level of accuracy.
     \begin{center}
         \Large
         \textbf{Classification Model Comparison}
