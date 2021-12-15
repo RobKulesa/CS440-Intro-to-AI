@@ -55,7 +55,11 @@
     \[w^y += f\]
     \[w^y' -= f\]
     The perceptron classifier in essence classifies each image in the class with the maximum score calculated by multiplying the feature vector f by classes' weight vectors w.\\
-    \\
+    \\\\
+    \large
+    \textbf{Perceptron Results - 5 iterations}
+    \normalsize
+
     The accuracy of the classifier was tested by calculating the standard deviation and mean of accuracy through 5 random samples of training data per percentage level. As seen from the table following, the accuracy of the classifier generally increased the more training data that were introduced. Likewise, the standard deviation of the accuracy decreased the more data presented. \\
     \begin{center}
     \begin{tabular}{||c c c||} 
@@ -84,6 +88,7 @@
      \hline
     \end{tabular}
     \end{center}
+    \newpage
     \begin{center}
         \Large
         \textbf{Classifier 2 - Naive Bayes}
@@ -96,8 +101,44 @@
     It functions by calculating the posterior probability $P(y|X)$ of each possible class based off of frequency distributions observed in the training set and choosing the class with the highest posterior probability as its prediction. This specific implementation of Naive Bayes used each pixel in the training images as an input, and calculated the likelihood of a each pixel being "on" or "off" given a class label (i.e. face, not face). Typically the posterior probability is calculated by multiplying the prior probability of a class  with the likelihood of each feature, but since the number of features was so high the log-sum of likelihoods and prior probabilities was used instead to avoid arithmetic underflow when calculating posterior probabilities. Additionally, calculating the denominator $P(X)$ is a redundant calculation since it does not change the relative difference between likelihood scores. As a result, the posterior probability equation used by this implementation of Naive Bayes is the following:\\ 
     \[P(y|X) = log(P(y)) + log(P(X|y))\]
     
-    A smoothing factor of +1 was also applied to each likelihood calculation to avoid a zero probability prediction if a given feature distribution is not represented well in the training data.
-    
+    A smoothing factor of +1 was also applied to each likelihood calculation to avoid a zero probability prediction if a given feature distribution is not represented well in the training data.\\\\
+    \large
+    \textbf{GNB Results - 5 iterations}
+    \normalsize
+
+    The Naive Bayes classifier was able to achieve fast classification speeds by precalculating all possible likelihoods for each feature (pixel) in a given sample and class. Thus, when the predict() method is called, the model only needs to look up the likelihoods of each feature in a sample from a pregenerated table of likelihoods. The Naive Bayes model was able to classify the face test set in 0.576 seconds (150 samples) with an accuracy of 0.893 and the digit test set in 3.699 seconds (1000 samples) with an accuracy of 0.769.
+
+    Testing accuracy of the classifier when trained on different percentages of training data was evaluated. The model randomly sampled a percentage of the training data 5 times at each stage and the means and standard deviations are displayed below. Testing accuracy increased with the amount of training data provided, with the greatest increase being observed when increasing from 10\% of the training data to 20\% of the training data.
+
+    \begin{center}
+    \begin{tabular}{||c c c||}
+     \hline
+     \% Training Data & Mean Accuracy & Standard Deviation \\ [0.5ex]
+     \hline\hline
+     10 & 0.487 & 0.001 \\
+     \hline
+     20 & 0.813 & 0.053 \\
+     \hline
+     30 & 0.8 & 0.067 \\
+     \hline
+     40 & 0.84 & 0.027 \\
+     \hline
+     50 & 0.863 & 0.01 \\
+     \hline
+     60 & 0.847 & 0.007 \\
+     \hline
+     70 & 0.88 & 0.007 \\
+     \hline
+     80 & 0.887 & 0.007 \\
+     \hline
+     90 & 0.88 & 0.007 \\
+     \hline
+     100 & 0.893 & 0.0 \\
+     \hline
+    \end{tabular}
+    \end{center}
+
+    \newpage
     \begin{center}
         \Large
         \textbf{Classifier 3 - K Nearest Neighbor}
@@ -124,6 +165,13 @@
     of training samples $n$, giving the testing phase of $m$ test samples a runtime of $\mathcal{O}(mn)$.\\\\
     \large
     \textbf{KNN Results - 5 iterations}
+    \normalsize
+
+    Overall, KNN achieved good accuracy (\textasciitilde 80\%) for both datasets when using even just 10\% of the training data.
+    As stated before, the runtime of the test phase of KNN appears to scale linearly with the number
+    of training samples used.
+    However, the runtime for the digits dataset is extremely high in comparison to the runtime for the faces dataset.
+    Future versions of this model may improve upon dimensionality reduction to lower runtime while maintaining a high level of accuracy.
     \small
     \begin{center}
     \begin{tabular}{||c|c c|c c||}
@@ -151,6 +199,7 @@
      100 & 0.9467 & 0.0 & 0.9060 & 0.0 \\
      \hline
     \end{tabular}
+    \newpage
     \begin{tabular}{||c|c|c||}
      \hline
      \% Training Data & mean(runtime) - Faces (seconds) & mean(runtime) - Digits (seconds) \\ [0.5ex]
@@ -178,47 +227,10 @@
     \end{tabular}
     \end{center}
     \normalsize
-    Overall, KNN achieved good accuracy (\textasciitilde 80\%) for both datasets when using even just 10\% of the training data.
-    As stated before, the runtime of the test phase of KNN appears to scale linearly with the number
-    of training samples used.
-    However, the runtime for the digits dataset is extremely high in comparison to the runtime for the faces dataset.
-    Future versions of this model may improve upon dimensionality reduction to lower runtime while maintaining a high level of accuracy.
     \begin{center}
         \Large
         \textbf{Classification Model Comparison}
     \end{center}
-    \normalsize
-    
-    The Naive Bayes classifier was able to achieve fast classification speeds by precalculating all possible likelihoods for each feature (pixel) in a given sample and class. Thus, when the predict() method is called, the model only needs to look up the likelihoods of each feature in a sample from a pregenerated table of likelihoods. The Naive Bayes model was able to classify the face test set in 0.576 seconds (150 samples) with an accuracy of 0.893 and the digit test set in 3.699 seconds (1000 samples) with an accuracy of 0.769.
 
-    Testing accuracy of the classifier when trained on different percentages of training data was evaluated. The model randomly sampled a percentage of the training data 5 times at each stage and the means and standard deviations are displayed below. Testing accuracy increased with the amount of training data provided, with the greatest increase being observed when increasing from 10\% of the training data to 20\% of the training data.
-    
-    \begin{center}
-    \begin{tabular}{||c c c||} 
-     \hline
-     \% Training Data & Mean Accuracy & Standard Deviation \\ [0.5ex] 
-     \hline\hline
-     10 & 0.487 & 0.001 \\ 
-     \hline
-     20 & 0.813 & 0.053 \\ 
-     \hline
-     30 & 0.8 & 0.067 \\ 
-     \hline
-     40 & 0.84 & 0.027 \\ 
-     \hline
-     50 & 0.863 & 0.01 \\ 
-     \hline
-     60 & 0.847 & 0.007 \\ 
-     \hline
-     70 & 0.88 & 0.007 \\ 
-     \hline
-     80 & 0.887 & 0.007 \\ 
-     \hline
-     90 & 0.88 & 0.007 \\ 
-     \hline
-     100 & 0.893 & 0.0 \\ 
-     \hline
-    \end{tabular}
-    \end{center}
 
 \end{document}
