@@ -111,29 +111,29 @@
     Testing accuracy of the classifier when trained on different percentages of training data was evaluated. The model randomly sampled a percentage of the training data 5 times at each stage and the means and standard deviations are displayed below. Testing accuracy increased with the amount of training data provided, with the greatest increase being observed when increasing from 10\% of the training data to 20\% of the training data.
 
     \begin{center}
-    \begin{tabular}{||c c c||}
+    \begin{tabular}{||c|c c|c c||}
      \hline
-     \% Training Data & Mean Accuracy & Standard Deviation \\ [0.5ex]
+     \% Training Data & mean(acc) - Faces & std(acc) - Faces & mean(acc) - Digits & std(acc) - Digits \\ [0.5ex]
      \hline\hline
-     10 & 0.487 & 0.001 \\
+     10 & 0.43 & 71.95 & 0.73 & 0.004\\
      \hline
-     20 & 0.813 & 0.053 \\
+     20 & 0.84 & 143.94 & 0.758 & 0.011\\
      \hline
-     30 & 0.8 & 0.067 \\
+     30 & 1.27 & 216.87 & 0.756 & 0.008\\
      \hline
-     40 & 0.84 & 0.027 \\
+     40 & 1.69 & 290.61 & 0.77 & 0.001\\
      \hline
-     50 & 0.863 & 0.01 \\
+     50 & 2.13 & 363.72 & 0.774 & 0.007\\
      \hline
-     60 & 0.847 & 0.007 \\
+     60 & 2.56 & 433.94 & 0.765 & 0.006\\
      \hline
-     70 & 0.88 & 0.007 \\
+     70 & 2.99 & 510.67 & 0.766 & 0.002\\
      \hline
-     80 & 0.887 & 0.007 \\
+     80 & 3.47 & 579.12 & 0.767 & 0.004\\
      \hline
-     90 & 0.88 & 0.007 \\
+     90 & 3.91 & 651.01 & 0.766 & 0.001\\
      \hline
-     100 & 0.893 & 0.0 \\
+     100 & 4.45 & 721.92 & 0.769 & 0.0\\
      \hline
     \end{tabular}
     \end{center}
