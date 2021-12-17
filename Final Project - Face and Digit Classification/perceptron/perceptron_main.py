@@ -7,6 +7,7 @@ import sys
 import util
 import time
 import numpy as np
+import random
 
 DIGIT_DATUM_WIDTH=28
 DIGIT_DATUM_HEIGHT=28
@@ -71,26 +72,32 @@ def runClassifier():
   numTest = testing_amount
 
   if dset == "faces":
-    rawTrainingData = samples.loadDataFile("facedata/facedatatrain", numTraining,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
-    trainingLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", numTraining)
-    rawValidationData = samples.loadDataFile("facedata/facedatatrain", numTest,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
-    validationLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", numTest)
-    rawTestData = samples.loadDataFile("facedata/facedatatest", numTest,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
-    testLabels = samples.loadLabelsFile("facedata/facedatatestlabels", numTest)
+    rawTrainingData, chosenList = samples.loadDataFile("facedata/facedatatrain", numTraining, FACE_DATUM_WIDTH,
+                                                       FACE_DATUM_HEIGHT, True)
+    trainingLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", chosenList)
+    rawValidationData, chosenList = samples.loadDataFile("facedata/facedatatrain", numTest, FACE_DATUM_WIDTH,
+                                                         FACE_DATUM_HEIGHT)
+    validationLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", chosenList)
+    rawTestData, chosenList = samples.loadDataFile("facedata/facedatatest", numTest, FACE_DATUM_WIDTH,
+                                                   FACE_DATUM_HEIGHT)
+    testLabels = samples.loadLabelsFile("facedata/facedatatestlabels", chosenList)
   elif dset == "digits":
-    rawTrainingData = samples.loadDataFile("digitdata/trainingimages", numTraining,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
-    trainingLabels = samples.loadLabelsFile("digitdata/traininglabels", numTraining)
-    rawValidationData = samples.loadDataFile("digitdata/validationimages", numTest,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
-    validationLabels = samples.loadLabelsFile("digitdata/validationlabels", numTest)
-    rawTestData = samples.loadDataFile("digitdata/testimages", numTest,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
-    testLabels = samples.loadLabelsFile("digitdata/testlabels", numTest)
+    rawTrainingData, chosenList = samples.loadDataFile("digitdata/trainingimages", numTraining, DIGIT_DATUM_WIDTH,
+                                                       DIGIT_DATUM_HEIGHT, True)
+    trainingLabels = samples.loadLabelsFile("digitdata/traininglabels", chosenList)
+    rawValidationData, chosenList = samples.loadDataFile("digitdata/validationimages", numTest, DIGIT_DATUM_WIDTH,
+                                                         DIGIT_DATUM_HEIGHT)
+    validationLabels = samples.loadLabelsFile("digitdata/validationlabels", chosenList)
+    rawTestData, chosenList = samples.loadDataFile("digitdata/testimages", numTest, DIGIT_DATUM_WIDTH,
+                                                   DIGIT_DATUM_HEIGHT)
+    testLabels = samples.loadLabelsFile("digitdata/testlabels", chosenList)
 
-
-  #Extract features
-  print "Extracting features..."
-  trainingData = map(featureFunction, rawTrainingData)
-  validationData = map(featureFunction, rawValidationData)
-  testData = map(featureFunction, rawTestData)
+  # Extract features
+  print
+  "Extracting features..."
+  trainingData = list(map(featureFunction, rawTrainingData))
+  validationData = list(map(featureFunction, rawValidationData))
+  testData = list(map(featureFunction, rawTestData))
 
   #Conduct training
   print "Training..."
@@ -134,26 +141,26 @@ def runClassifierStats(first, second, third):
   numTest = testing_amount
 
   if dset == "faces":
-    rawTrainingData = samples.loadDataFile("facedata/facedatatrain", numTraining,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
-    trainingLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", numTraining)
-    rawValidationData = samples.loadDataFile("facedata/facedatatrain", numTest,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
-    validationLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", numTest)
-    rawTestData = samples.loadDataFile("facedata/facedatatest", numTest,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
-    testLabels = samples.loadLabelsFile("facedata/facedatatestlabels", numTest)
+    rawTrainingData, chosenList = samples.loadDataFile("facedata/facedatatrain", numTraining,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT, True)
+    trainingLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", chosenList)
+    rawValidationData, chosenList = samples.loadDataFile("facedata/facedatatrain", numTest,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
+    validationLabels = samples.loadLabelsFile("facedata/facedatatrainlabels", chosenList)
+    rawTestData, chosenList = samples.loadDataFile("facedata/facedatatest", numTest,FACE_DATUM_WIDTH,FACE_DATUM_HEIGHT)
+    testLabels = samples.loadLabelsFile("facedata/facedatatestlabels", chosenList)
   elif dset == "digits":
-    rawTrainingData = samples.loadDataFile("digitdata/trainingimages", numTraining,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
-    trainingLabels = samples.loadLabelsFile("digitdata/traininglabels", numTraining)
-    rawValidationData = samples.loadDataFile("digitdata/validationimages", numTest,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
-    validationLabels = samples.loadLabelsFile("digitdata/validationlabels", numTest)
-    rawTestData = samples.loadDataFile("digitdata/testimages", numTest,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
-    testLabels = samples.loadLabelsFile("digitdata/testlabels", numTest)
+    rawTrainingData, chosenList = samples.loadDataFile("digitdata/trainingimages", numTraining,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT, True)
+    trainingLabels = samples.loadLabelsFile("digitdata/traininglabels", chosenList)
+    rawValidationData, chosenList = samples.loadDataFile("digitdata/validationimages", numTest,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
+    validationLabels = samples.loadLabelsFile("digitdata/validationlabels", chosenList)
+    rawTestData, chosenList = samples.loadDataFile("digitdata/testimages", numTest,DIGIT_DATUM_WIDTH,DIGIT_DATUM_HEIGHT)
+    testLabels = samples.loadLabelsFile("digitdata/testlabels", chosenList)
 
 
   #Extract features
   print "Extracting features..."
-  trainingData = map(featureFunction, rawTrainingData)
-  validationData = map(featureFunction, rawValidationData)
-  testData = map(featureFunction, rawTestData)
+  trainingData = list(map(featureFunction, rawTrainingData))
+  validationData = list(map(featureFunction, rawValidationData))
+  testData = list(map(featureFunction, rawTestData))
 
   #Conduct training
   print "Training..."
